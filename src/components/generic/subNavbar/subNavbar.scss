@@ -1,0 +1,116 @@
+@import "../../../App.scss";
+
+.enrollment-subNavbar {
+  @extend %noselect;
+  ul {
+    li {
+      cursor: pointer;
+    }
+  }
+  a {
+    color: $black-70;
+  }
+  position: fixed;
+  z-index: 9;
+  display: flex;
+  justify-content: space-between;
+  color: $black-70;
+  font-size: 16px;
+  font-weight: 400;
+  background: $white;
+  @include media(">sm") {
+    top: 56px;
+    height: 56px;
+    @extend %width-all;
+  }
+  @include media("<=sm") {
+    height: 48px;
+    bottom: 0px;
+    border-top: 0.5px solid $black-70;
+    padding: 0 !important;
+    width: 100%;
+    .enrollment-subNavbar-left {
+      display: flex;
+      justify-content: space-evenly;
+      padding: 0 8px;
+      width: calc(100% - 16px);
+      a {
+        display: flex;
+        flex-direction: column;
+        svg {
+          font-size: 20px;
+        }
+        .enrollment-subNavbar-item-label {
+          font-size: 11px;
+          font-weight: 300;
+        }
+      }
+    }
+  }
+
+  .enrollment-subNavbar-left {
+    @extend %flex-center;
+    a {
+      display: flex;
+      flex-direction: column;
+      svg {
+        font-size: 20px;
+      }
+      .enrollment-subNavbar-item-label {
+        font-size: 11px;
+        font-weight: 300;
+      }
+    }
+    .enrollment-subNavbar-item {
+      margin: 0 16px;
+      &:first-child {
+        margin-left: 0;
+      }
+      &:last-child {
+        margin-right: 0;
+      }
+      a {
+        @extend %flex-center;
+        font-weight: 400;
+      }
+      transition: all 0.2s ease-in-out;
+      &:hover {
+        color: $black-2f;
+        // font-size: 18px;
+      }
+    }
+    & .selected {
+      a {
+        color: $blue-14;
+        font-weight: 600;
+      }
+    }
+  }
+  .enrollment-subNavbar-center {
+    @extend %flex-center;
+    min-width: 0px;
+    flex: 0 1 400px;
+    .search-container {
+      @extend %flex-center;
+      min-width: 0px;
+      flex: 0 1 400px;
+    }
+  }
+  .enrollment-subNavbar-right {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    .enrollment-subNavbar-item {
+      @extend %flex-center;
+      width: 40px;
+      height: 40px;
+      border-radius: 40px;
+      transition: background 0.2s ease-in-out;
+      &:hover {
+        background: $black-42;
+      }
+    }
+  }
+}

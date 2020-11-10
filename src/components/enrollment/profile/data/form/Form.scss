@@ -1,0 +1,75 @@
+@mixin shadow($x, $y, $blur, $spread, $r, $g, $b, $opacity) {
+  -webkit-box-shadow: $x $y $blur $spread rgba($r, $g, $b, $opacity);
+  -moz-box-shadow: $x $y $blur $spread rgba($r, $g, $b, $opacity);
+  box-shadow: $x $y $blur $spread rgba($r, $g, $b, $opacity);
+}
+@mixin black-shadow($x, $y, $blur, $spread, $opacity) {
+  @include shadow($x, $y, $blur, $spread, 0, 0, 0, $opacity);
+}
+
+%noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+%absolute-zero {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+%flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+$black: black;
+$black-03: #030303;
+$black-42: #424242;
+$black-60: #606060;
+$black-8D: #8d9292;
+$white: white;
+$light-blue-1: #f2f8ff;
+$light-blue-2: #dbecff;
+$light-blue-3: #bfddff;
+$blue-1: #5794f0;
+$blue-2: #007fff;
+$light-pink: #fae3f2;
+
+// mobile breakpooints
+$maxw-mob: 414px;
+$maxh-mob: 896px;
+$minw-mob: 360px;
+$minh-mob: 454px;
+
+// desktop breakpoints
+$minw-desk-s: 1261px;
+$minh-desk-s: 696px;
+$minw-desk-m: 1901px;
+$minh-desk-m: 1008px;
+
+.form-buttons {
+  padding: 8px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+.form-files {
+  display: flex;
+  flex-direction: column;
+  .form-file-img {
+    width: 100%;
+    img {
+      width: 100%;
+    }
+  }
+  .form-file-upload {
+    margin: 8px 0;
+  }
+}

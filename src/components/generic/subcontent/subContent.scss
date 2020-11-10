@@ -1,0 +1,160 @@
+@import "../../../App.scss";
+
+.body-subcontent {
+  background: $white;
+  display: flex;
+  flex-direction: row;
+  min-height: fit-content;
+  .body-subcontent-start {
+    display: flex;
+    width: 300px;
+  }
+  .body-subcontent-end {
+    width: 600px;
+    padding: 16px calc(50% - 300px);
+    @include media("<=sm") {
+      padding: 16px;
+      width: calc(100% - 32px);
+    }
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    .body-subcontent-end-title {
+      font-size: 48px;
+      font-weight: 400;
+      color: $darkblue-20;
+    }
+    .body-subcontent-banner {
+      border-top-left-radius: 16px;
+      border-top-right-radius: 16px;
+    }
+    .body-subcontent-tab-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      @include media("<=sm") {
+        justify-content: flex-start;
+      }
+      width: inherit;
+      // border-bottom: 3px solid $lightblue-2;
+      overflow-x: scroll;
+      .body-subcontent-tab {
+        padding: 8px 16px;
+        border-bottom: 3px solid $lightblue-2;
+        a {
+          @extend %flex-center;
+          font-weight: 400;
+          color: $black-70;
+        }
+        transition: all 0.2s ease-in-out;
+        &:hover {
+          color: $black-2f;
+          // font-size: 18px;
+        }
+      }
+      & .selected {
+        border-bottom: 3px solid $blue-14;
+        a {
+          color: $blue-14;
+          font-weight: 500;
+        }
+      }
+    }
+    .body-subcontent-header {
+      padding: 16px 0;
+      width: inherit;
+      @include media("<=sm") {
+        padding: 16px;
+      }
+      .body-subcontent-info {
+        font-size: 12px;
+      }
+      .body-subcontent-title {
+        @include media(">sm") {
+          font-size: 48px;
+        }
+        @include media("<=sm") {
+          font-size: 36px;
+        }
+      }
+      .body-subcontent-subtitle {
+        font-size: 18px;
+        font-weight: 300;
+      }
+      .body-subcontent-annecdote {
+        font-size: 14px;
+        font-style: italic;
+        font-weight: 400;
+      }
+    }
+    .body-subcontent-body {
+      width: inherit;
+      @include media("<=sm") {
+        padding: 16px;
+      }
+      text-align: justify;
+      text-justify: inter-word;
+      .body-parragraph {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        padding-bottom: 16px;
+      }
+    }
+    .body-subcontent-footer {
+      @include media("<=sm") {
+        padding: 16px;
+      }
+      .body-subcontent-title {
+        font-size: 36px;
+        font-weight: 500;
+        padding-bottom: 16px;
+      }
+      .body-subcontent-subtitle {
+        font-size: 20px;
+        font-weight: 400;
+        padding-bottom: 8px;
+      }
+      .body-subcontent-parragraph {
+        padding-bottom: 16px;
+      }
+      .body-subcontent-text {
+        font-size: 16px;
+        font-weight: 300;
+      }
+    }
+    .body-subcontent-annecdote {
+      font-size: 14px;
+      font-weight: 400;
+      font-style: italic;
+    }
+  }
+
+  & .sider {
+    width: calc(100% - 300px);
+    padding: 0;
+  }
+}
+
+.item-1 {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 8px 0;
+  & .MuiPaper-rounded {
+    border-radius: 16px;
+  }
+  .item-1-header {
+    padding: 8px 16px;
+    .item-1-subtitle {
+      font-size: 14px;
+      color: $black-70;
+    }
+    .item-1-title {
+      font-weight: 500;
+      font-size: 24px;
+    }
+  }
+}

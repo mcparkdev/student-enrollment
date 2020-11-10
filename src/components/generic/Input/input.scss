@@ -1,0 +1,129 @@
+$white: white;
+$blue: #007fff;
+$text-grey: #424242;
+$grey: #efefef;
+$divider-grey: #ccc;
+
+// mobile breakpooints
+$maxw-mob: 414px;
+$maxh-mob: 896px;
+$minw-mob: 360px;
+$minh-mob: 454px;
+
+// desktop breakpoints
+$minw-desk-s: 1261px;
+$minh-desk-s: 696px;
+$minw-desk-m: 1901px;
+$minh-desk-m: 1008px;
+
+.input-container {
+  position: relative;
+  margin-bottom: 8px;
+  height: 48px;
+  width: 100%;
+  background: $grey;
+  border-radius: 8px;
+  @media only screen and (min-height: $minh-desk-m) {
+    height: 56px;
+  }
+  @media only screen and (max-height: $maxh-mob) and (max-width: $maxw-mob) {
+    height: 48px;
+  }
+  input {
+    color: $text-grey;
+    width: calc(100% - 16px);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 12;
+    border-radius: 8px;
+    border: none;
+    -webkit-appearance: none;
+    -ms-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: transparent;
+    padding: 8px;
+    padding-top: 0;
+    border-radius: 8px;
+    outline: none;
+    font-size: 16px;
+    font-weight: 700;
+    @media only screen and (min-height: $minh-desk-m) {
+      font-size: 20px;
+    }
+    @media only screen and (max-height: $maxh-mob) and (max-width: $maxw-mob) {
+      font-size: 16px;
+    }
+  }
+  .placeholder {
+    position: absolute;
+    height: 100%;
+    left: 0;
+    top: 0;
+    transform: translateY(20%);
+    font-size: 16px;
+    @media only screen and (min-height: $minh-desk-m) {
+      font-size: 20px;
+    }
+    @media only screen and (max-height: $maxh-mob) and (max-width: $maxw-mob) {
+      font-size: 16px;
+    }
+    padding: 0 8px;
+    width: calc(100% - 16px);
+    border-radius: 8px;
+    color: $text-grey;
+    color: #aaa;
+    transition: all 0.3s ease-in-out;
+  }
+}
+
+input:hover + .placeholder,
+input:valid + .placeholder,
+input:focus + .placeholder {
+  top: 0;
+  transform: translateY(0);
+  font-size: 14px;
+  @media only screen and (min-height: $minh-desk-m) {
+    font-size: 16px;
+  }
+  @media only screen and (max-height: $maxh-mob) and (max-width: $maxw-mob) {
+    font-size: 14px;
+  }
+
+  color: $text-grey;
+}
+
+.password {
+  input {
+    width: calc(100% - 16px - 36px) !important;
+    @media only screen and (min-height: $minh-desk-m) {
+      width: calc(100% - 24px - 40px) !important;
+    }
+    @media only screen and (max-height: $maxh-mob) and (max-width: $maxw-mob) {
+      width: calc(100% - 16px - 36px) !important;
+    }
+  }
+  span span svg {
+    width: 20px;
+    color: $text-grey;
+    height: 100%;
+    position: absolute;
+    right: 16px;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    &:hover {
+      // width: 1.75rem;
+      color: $blue;
+    }
+    @media only screen and (min-height: $minh-desk-m) {
+      font-size: 24px;
+    }
+    @media only screen and (max-height: $maxh-mob) and (max-width: $maxw-mob) {
+      font-size: 20px;
+    }
+  }
+}

@@ -1,0 +1,143 @@
+@use "../landing" as ld;
+
+%absolute-zero {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+%flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+$black: black;
+$white: white;
+$blue: #007fff;
+$light-pink: #fae3f2;
+
+// mobile breakpooints
+$maxw-mob: 414px;
+$maxh-mob: 896px;
+$minw-mob: 360px;
+$minh-mob: 454px;
+
+// desktop breakpoints
+$minw-desk-s: 1261px;
+$minh-desk-s: 696px;
+$minw-desk-m: 1901px;
+$minh-desk-m: 1008px;
+
+.banner {
+  @extend %absolute-zero;
+  top: 80px;
+  height: calc(100vh - 160px);
+  width: calc(88vw);
+  margin: 0 6vw;
+  color: $white;
+  .content {
+    @extend %flex-center;
+    align-items: flex-start;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+
+    // padding-top: 90px;
+    // @media only screen and (min-height: $minh-desk-s) and (min-width: $minw-desk-s) {
+    //   padding-top: 20vh;
+    // }
+    // @media only screen and (min-height: $minh-desk-s) and (min-width: $minw-desk-s) {
+    //   padding-top: 20vh;
+    // }
+    // @media only screen and (max-height: $maxh-mob) and (max-width: $maxw-mob) {
+    //   padding-top: 60px;
+    // }
+    h1 {
+      font-size: 48px;
+      font-weight: 600;
+      margin: 0;
+      padding: 8px 0 !important;
+      @media only screen and (min-height: $minh-desk-m) {
+        font-size: 90px;
+      }
+      @media only screen and (max-height: $maxh-mob) and (max-width: $maxw-mob) {
+        font-size: 36px;
+      }
+      padding: 0;
+      p {
+        margin: 0;
+        // padding: 0;
+      }
+    }
+    .content-buttons {
+      display: flex;
+      font-size: 24px;
+      @media only screen and (min-height: $minh-desk-m) {
+        font-size: 36px;
+      }
+      @media only screen and (max-height: $maxh-mob) and (max-width: $maxw-mob) {
+        font-size: 16px;
+      }
+      padding: 8px 0 !important;
+      cursor: pointer;
+      li {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0 16px;
+        // padding: 0.5rem 1rem;
+        // border-radius: 50px;
+        transition: all 0.1s ease-in-out;
+        &:hover,
+        &:focus {
+          color: $light-pink;
+          border-bottom: 4px solid $light-pink;
+          font-size: 28px;
+          @media only screen and (min-height: $minh-desk-m) {
+            font-size: 40px;
+          }
+          @media only screen and (max-height: $maxh-mob) and (max-width: $maxw-mob) {
+            font-size: 16px;
+          }
+        }
+        &:active {
+          color: $blue;
+          border-bottom: 4px solid $blue;
+          font-size: 28px;
+          @media only screen and (min-height: $minh-desk-m) {
+            font-size: 40px;
+          }
+          @media only screen and (max-height: $maxh-mob) and (max-width: $maxw-mob) {
+            font-size: 20px;
+          }
+        }
+      }
+      @media only screen and (max-height: $maxh-mob) and (max-width: $maxw-mob) {
+        li {
+          // color: $light-pink;
+          font-weight: 600;
+          border-bottom: 2px solid $light-pink;
+        }
+      }
+      :first-child {
+        margin-left: 0px;
+        // background-color: $blue;
+      }
+    }
+    .content-subtitle {
+      // position: absolute;
+      // bottom: 1rem;
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      font-size: 16px;
+      @media only screen and (max-height: $maxh-mob) and (max-width: $maxw-mob) {
+        font-size: 11px;
+      }
+      max-width: 410px;
+      font-weight: 400;
+    }
+  }
+}

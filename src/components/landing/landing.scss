@@ -1,0 +1,88 @@
+@mixin shadow($x, $y, $blur, $spread, $r, $g, $b, $opacity) {
+  -webkit-box-shadow: $x $y $blur $spread rgba($r, $g, $b, $opacity);
+  -moz-box-shadow: $x $y $blur $spread rgba($r, $g, $b, $opacity);
+  box-shadow: $x $y $blur $spread rgba($r, $g, $b, $opacity);
+}
+@mixin black-shadow($x, $y, $blur, $spread, $opacity) {
+  @include shadow($x, $y, $blur, $spread, 0, 0, 0, $opacity);
+}
+
+%noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+%absolute-zero {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+%flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+$black: black;
+$white: white;
+$blue: #007fff;
+$light-pink: #fae3f2;
+
+// mobile breakpooints
+$maxw-mob: 414px;
+$maxh-mob: 896px;
+$minw-mob: 360px;
+$minh-mob: 454px;
+
+// desktop breakpoints
+$minw-desk-s: 1261px;
+$minh-desk-s: 696px;
+$minw-desk-m: 1901px;
+$minh-desk-m: 1008px;
+
+@media only screen and (max-height: $maxh-mob) and (max-width: $maxw-mob) {
+  .non-mobile {
+    display: none;
+  }
+}
+
+.landing {
+  @extend %absolute-zero;
+  @extend %noselect;
+  min-height: -webkit-fill-available;
+
+  z-index: 10;
+  .bg-image {
+    min-height: -webkit-fill-available;
+    width: 100vw;
+    .bg-layer-1 {
+      @extend %absolute-zero;
+      min-height: -webkit-fill-available;
+      width: 100%;
+      z-index: -1;
+      background-color: rgba(0, 0, 0, 0.2);
+    }
+    img {
+      @extend %absolute-zero;
+      z-index: -2;
+      width: 100vw;
+      height: 100vh;
+      @media only screen and (max-height: $maxh-mob) and (max-width: $maxw-mob) {
+        min-height: -webkit-fill-available;
+        height: auto;
+      }
+      object-fit: cover;
+      object-position: 100% 100%;
+      -moz-transform: scale(-1, 1);
+      -o-transform: scale(-1, 1);
+      -webkit-transform: scale(-1, 1);
+      transform: scale(-1, 1);
+    }
+  }
+}

@@ -1,0 +1,152 @@
+@import "../../../../App.scss";
+
+.body-subcontent {
+  display: flex;
+  flex-direction: row;
+  a {
+    text-decoration: none;
+    color: $black-2f;
+  }
+  .subcontent-body {
+    @include media("<=sm") {
+      padding: 16px;
+      width: calc(100% - 32px);
+    }
+    @include media(">sm") {
+      padding: 32px;
+      flex: 1 0 calc(100% - 64px - 300px - 64px);
+    }
+    .table-toolbar {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      height: 60px;
+      .table-title {
+        font-weight: 700;
+        padding: 0 16px;
+        color: $blue-14;
+      }
+      .table-breadcrumbs {
+        flex: 1;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+      }
+      a {
+        font-size: 20px;
+        font-weight: 500;
+      }
+      .table-actions {
+        flex: 0;
+        width: inherit;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+        // padding: 0 8px;
+      }
+    }
+    .table {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      th,
+      td {
+        justify-content: flex-start;
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+      }
+      .checkbox {
+        flex: 0 0 36px;
+      }
+      .name {
+        flex: 1 1 50%;
+      }
+      .modified {
+        flex: 0 0 25%;
+      }
+      .current-status-actions {
+        flex: 0 0 25%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        @include media("<=sm") {
+          flex: 0 0 50px;
+        }
+      }
+
+      thead,
+      tbody {
+        display: flex;
+        flex-direction: column;
+      }
+
+      thead,
+      tbody,
+      tr {
+        // width: 100%;
+        min-height: 59px;
+      }
+
+      thead {
+        border-bottom: 2px solid $black-da;
+      }
+      tr {
+        display: flex;
+        flex-direction: row;
+      }
+      // .table-header {
+      //   .table-header-row {
+      //     // display: flex;
+      //   }
+      // }
+      .table-body {
+        .selected {
+          background: $black-f1;
+        }
+        .selected:hover {
+          background: $black-da;
+        }
+        .table-body-row:hover {
+          background: $black-ef;
+        }
+        .table-body-row:hover .linear-progress-with-label {
+          display: none;
+        }
+        .table-row-action-buttons {
+          display: none;
+        }
+        .table-body-row:hover .table-row-action-buttons {
+          display: flex;
+        }
+      }
+    }
+
+    .MuiDialog-root {
+      @include media("<=sm") {
+        .DateDisplay-root-140 {
+          display: none;
+        }
+        & .MuiPaper-root {
+          margin: 0;
+        }
+        // .makeStyles-selectorContainer-124 {
+        // }
+      }
+    }
+  }
+}
+
+.menu-item {
+  min-width: 150px;
+  & .MuiButton-label {
+    justify-content: flex-start;
+    & .MuiButton-startIcon {
+      margin-left: 0;
+    }
+  }
+}

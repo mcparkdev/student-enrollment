@@ -1,0 +1,29 @@
+@import "../../../../App.scss";
+
+.info-item-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  .info-item-container-title {
+    font-size: 24px;
+    font-weight: 400;
+    padding-bottom: 8px;
+  }
+  .info-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding-bottom: 4px;
+    .info-item-label {
+      font-size: 12px;
+      font-weight: 400;
+      color: $black-70;
+    }
+    .info-item-content {
+      font-size: 16px;
+      font-weight: 500;
+    }
+  }
+}

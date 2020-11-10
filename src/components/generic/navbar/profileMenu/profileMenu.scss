@@ -1,0 +1,114 @@
+@import "~include-media/dist/include-media";
+@import "../../../../App.scss";
+
+.profile-button {
+  @extend %flex-center;
+  height: 28px;
+  width: 28px;
+  font-size: 20px;
+  border-radius: 50px;
+  // border: 1px solid $white;
+  color: $white;
+  margin: 0;
+  span,
+  span svg {
+    @extend %flex-center;
+    margin: 0;
+  }
+}
+
+.profile-menu {
+  color: $black-03;
+  a {
+    color: $black-03;
+  }
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 56px;
+  right: 0;
+  // right: calc(50px + 2rem);
+  width: 300px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: $white;
+  font-size: 14px;
+  font-weight: 300;
+  z-index: 10;
+  @include media("<=sm") {
+    position: fixed;
+    font-size: 16px;
+    top: 48px;
+    left: 0;
+    right: 0;
+    // height: 100vh;
+    width: 100vw;
+  }
+  ul {
+    padding: 8px 0;
+    width: 100%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    li {
+      svg {
+        font-size: 20px;
+        margin-right: 16px;
+      }
+      display: flex;
+      align-items: center;
+      height: 40px;
+      width: calc(100% - 32px);
+      margin: 0;
+      padding: 0 16px;
+      &:hover {
+        background: #eee;
+      }
+      .account-status-item-container {
+        display: flex;
+        flex-flow: wrap;
+        .account-status-item {
+          display: flex;
+          position: relative;
+          flex-direction: column;
+          padding-right: 8px;
+          .account-status-text {
+            @extend %flex-center;
+            justify-content: flex-start;
+            font-size: 16px;
+            font-weight: 500;
+          }
+          .account-status-label {
+            font-size: 12px;
+            position: absolute;
+            top: 16px;
+            left: 0px;
+          }
+        }
+        :last-child {
+          display: flex;
+          padding-right: 0;
+        }
+      }
+    }
+    #account-status {
+      display: flex;
+      align-items: flex-start;
+      height: 40px;
+    }
+  }
+  .profile-menu-main-item-container {
+    padding-top: 16px;
+    li {
+      height: 24px;
+      &:hover {
+        background: $white;
+      }
+    }
+    & .full-name {
+      font-size: 20px;
+      font-weight: 600;
+      height: 24px;
+    }
+  }
+  :last-child {
+    border-bottom: 0;
+  }
+}
