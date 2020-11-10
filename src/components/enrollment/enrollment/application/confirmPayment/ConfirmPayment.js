@@ -31,7 +31,7 @@ const ConfirmPayment = (props) => {
   const {names, labels, instructions, options, currentUser, userName, storage} = props
   const {firstName, lastName} = userName
   const [values, setValues] = useState({
-    period:"2020-4",
+    period:"20204",
     courseType:"faceToFace",
     courseName: "beginner-1",
     courseLevel: "1",
