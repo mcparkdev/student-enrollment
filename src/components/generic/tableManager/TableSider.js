@@ -1,15 +1,15 @@
 import React from 'react'
-import "./sider.scss"
+
+import "./tableSider.scss"
 
 import Button from '@material-ui/core/Button'
 
-
-import LinearProgressWithLabel from "../../../../generic/linearProgress/LinearProgressWithLabel"
-import SubContentSider from '../../../../generic/subcontent/sider/Sider';
-
+import LinearProgressWithLabel from "../linearProgress/LinearProgressWithLabel"
+import SubContentSider from '../subcontent/sider/Sider';
 
 const Sider = (props) => {
   const {selectedRow, body, siderActions} = props
+  // console.log(selectedRow, body)
   return (
     <>
       <SubContentSider {...props} header={selectedRow !== null ? body[selectedRow].cells[0].label : "세부정보를 확인할 항목을 선택해주세요"}>
@@ -21,6 +21,21 @@ const Sider = (props) => {
             <div className="subcontent-sider-progress">
               <LinearProgressWithLabel variant="determinate" {...body[selectedRow].students}/>
             </div>
+            {/* <div className="divider" style={{margin: "8px 0"}}/> */}
+            {/* {body[selectedRow].childrenPaymentProgress.map((progress,index)=>{
+              const {name, label} = progress
+              return (
+                <React.Fragment key={name}>
+                  <div className="subcontent-sider-label">
+                    {label}
+                  </div>
+                  <div className="subcontent-sider-progress">
+                    <LinearProgressWithLabel variant="determinate" {...progress}/>
+                  </div>
+                </React.Fragment>
+              )
+            })
+            } */}
           </>
         }
         <div className="divider" style={{margin: "8px 0"}}/>
@@ -34,6 +49,7 @@ const Sider = (props) => {
             )
           })}
         </div>
+        {props.children}
       </SubContentSider>
     </>
   )

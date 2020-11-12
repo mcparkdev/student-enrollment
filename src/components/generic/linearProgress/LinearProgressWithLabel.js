@@ -18,8 +18,8 @@ const LinearProgressTooltip = withStyles((theme) => ({
 
 export default function LinearProgressWithLabel(props) {
   const {total, completed, progress} = props
-  const percentage = completed / total * 100
-  const buffer = (completed + progress) / total * 100
+  const percentage = total !== 0 ? completed / total * 100 : 0
+  const buffer = total !== 0 ? (completed + progress) / total * 100 : 0
   return (
     
       <Box display="flex" alignItems="center" style={{flex: 1}} className="linear-progress-with-label">

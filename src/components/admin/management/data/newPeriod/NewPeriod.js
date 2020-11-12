@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 
 import "./newPeriod.scss"
-
+import { db } from "../../../../../firebase"
 import Button from "@material-ui/core/Button"
 import TextField from '@material-ui/core/TextField'
 import MenuItem from '@material-ui/core/MenuItem'
@@ -32,7 +32,7 @@ const defaultValues = [
   {
     name: "newPeriodBimester",
     label: "학기",
-    value: "1",
+    value: 1,
     error: false,
     helperText: "학기를 선택해주세요",
   },
@@ -80,7 +80,8 @@ const NewPeriod = (props) => {
       const bimester = newPeriodBimester.value
       const dates = newPeriodDates.value
       const year = newPeriodYear.value._d === undefined ? newPeriodYear.value.getFullYear() : newPeriodYear.value.year()
-      const name = year * 10 + parseInt(bimester)
+      const name = `${year}-${bimester}`
+      // const name = year * 10 + parseInt(bimester)
       const periodProps = {
         name,
         bimester,
@@ -93,9 +94,17 @@ const NewPeriod = (props) => {
         staffs: {},
         courses: {},
       }
-      props.db.collection('periods').doc(name.toString()).set(periodProps)
-        .then(()=>{alert("학기가 생성 되었습니다."); onReset();})
-        .catch(err => {console.log(err);alert("학기를 생성하지 못 했습니다.");})
+      db.collection("periods").where("name", "==", name).get()
+      .then(data => {
+        if (data.empty) {
+          db.collection('periods').doc(name.toString()).set(periodProps)
+          .then(()=>{alert("학기가 생성 되었습니다."); onReset(); props.setLoading(true)})
+          .catch(err => {console.log(err);alert("학기를 생성하지 못 했습니다.");})
+        }
+        else alert(`${year}-${bimester} 학기는 이미 존재합니다.`)
+      })
+      .catch(err=>console.log(err))
+      
       console.log(name.toString())
     }
   }
@@ -189,6 +198,7 @@ const NewPeriod = (props) => {
   )
 }
 
-const bimesters = ['1', '2', '3', '4', '5', '6']
+// const bimesters = ['1', '2', '3', '4', '5', '6']
+const bimesters = [1, 2, 3, 4, 5, 6]
 
 export default NewPeriod

@@ -11,30 +11,31 @@ const genericBreadcrumbs = (props) => {
   const {xs} = viewport
   return (
     <>
-      {xs ? 
-      <>
-        {router.location.pathname !== "/management/data" && 
+      {router.location.pathname !== "/management/data" && 
           <IconButton aria-label="back" onClick={()=>router.history.goBack()}>
             <ArrowBackIcon/>
           </IconButton>
         }
+      {xs ? 
+      <>
+        
         <Breadcrumbs>
-          <NavLink to={lastLink.path}>
+          <NavLink to={lastLink.path} style={{fontWeight: 700}}>
             {lastLink.label}
           </NavLink>
         </Breadcrumbs>
       </>
       :
-      <Breadcrumbs aria-label="breadcrumb">
-        {links.map((link,index) => {
-          const {label, path} = link
-          return(
-            <NavLink to ={path} key={path}>
-              {label}
-            </NavLink>
-          )
-        })}
-      </Breadcrumbs>
+        <Breadcrumbs aria-label="breadcrumb">
+          {links.map((link,index) => {
+            const {label, path} = link
+            return(
+              <NavLink to ={path} key={path} style={{fontWeight: 700}}>
+                {label}
+              </NavLink>
+            )
+          })}
+        </Breadcrumbs>
       }
     </>
   )

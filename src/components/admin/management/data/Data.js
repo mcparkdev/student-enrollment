@@ -1,208 +1,88 @@
 import React, {useState, useEffect} from 'react'
+import { db } from "../../../../firebase"
 
 import "./data.scss"
 
 import SubContent from '../../../generic/subcontent/SubContent'
-import Table from "../../../generic/table/Table"
+import TableManager from "../../../generic/tableManager/TableManager"
+import NewPeriod from './newPeriod/NewPeriod';
 
 import AddIcon from '@material-ui/icons/Add';
 
-import Sider from './sider/Sider'
-import NewPeriod from './newPeriod/NewPeriod';
+// import Sider from './sider/Sider'
+
+
+const newStudent = (props) => {
+  console.log(props)
+}
+
+const giveBreadcrumbLinks = (currentPath) => {
+  const splits = currentPath.split("/").filter((item, index) => index > 1)
+  const links = splits.map((item, i) => {
+    let path = "/management"
+    splits.forEach((split, splitIndex)=>{
+      // console.log(i,splitIndex)
+      // console.log(item, split)
+      if (i >= splitIndex) {
+        path = `${path}/${split}`
+      }
+      // console.log(path)
+    })
+    const label = item === "data" ? "재콜롬비아한국학교" : item
+    return {
+      name: path,
+      label: label,
+      path,
+    }
+  })
+
+  return links
+}
 
 const Data = (props) => {
-  const {viewport, db} = props
-  const [selectedRow, setSelectedRow] = useState(null)
-  const [isSiderOpen, setIsSiderOpen] = useState(viewport.xs ? false : true)
-  const handleIsSiderOpen = () => {
-    setIsSiderOpen(prevIsSiderOpen => !prevIsSiderOpen)
-  }
-
   const [loading, setLoading] = useState(true)
-  const [periodDocuments, setPeriodDocuments] = useState([])
+  const [dataCollection, setDataCollection] = useState(db.collection("periods").orderBy("name", "desc"))
+  const [dataDocuments, setDataDocuments] = useState([])
+  const [breadcrumbLinks, setBreadcrumbLinks] = useState([{
+    name: "제콜롬비아한국학교",
+    label: "제콜롬비아한국학교",
+    path: "/management/data",
+  },])
+
+  const currentPath = props.router.location.pathname
 
   useEffect(()=>{
-    db.collection('periods').orderBy("id", "desc").get()
-      .then(data => {
-        data.docs.forEach(doc=>console.log(doc.data()))
-        if (!!data && !!data.docs){
-          setPeriodDocuments(data.docs.map(doc=>doc.data()))
-          setLoading(false)
-        }
-      })
-      .catch(err => console.log(err))
-  }, [db])
-  // console.log(periodDocuments, loading)
-
-  const breadcrumbLinks = [
-    {
-      name: "제콜롬비아한국학교",
-      label: "제콜롬비아한국학교",
-      path: "/management/data",
+    const links = giveBreadcrumbLinks(currentPath)
+    setBreadcrumbLinks(links)
+    // setBreadcrumbLinks(giveBreadcrumbLinks(currentPath))
+    console.log(links)
+    const collection = () => {
+      switch (links.length){
+        case 2: return db.collection("courses").where("period.name", "==", links[1].label).orderBy("filter", "desc");
+        case 3: return db.collection("courses").where("period.name", "==", links[2].label).orderBy("filter", "desc");
+        default: return db.collection("periods").orderBy("name", "desc");
+      }
     }
-  ]
-  console.log(selectedRow)
-  const tableProps = {
-    header: [
-      {
-        id: 0,
-        name: "name",
-        label: "이름",
-      },
-      {
-        id: 1,
-        name: "modified",
-        label: "수정됨",
-      },
-      {
-        id: 2,
-        name: "current-status",
-        label: "현황",
-      },
-    ],
-    body: [
-      {
-        id: 0,
-        favorite: true,
-        name: "2020-4",
-        label: "2020-4",
-        checked: false,
-        cells: [
-          {
-            name:"name",
-            label: "2020-4",
-          },
-          {
-            name: "modified",
-            label: "2020.11.02 오후 2:24",
-          },
-          {
-            name: "paymentProgress",
-            total: 60,
-            completed: 40,
-            progress: 15,
-          },
-        ],
-        childrenPaymentProgress: [
-          {
-            name: "beginner-1",
-            label: "초급1",
-            total: 10,
-            completed: 7,
-            progress: 3,
-          },
-          {
-            name: "beginner-2",
-            label: "초급2",
-            total: 10,
-            completed: 9,
-            progress: 0,
-          },
-          {
-            name: "intermediate-1",
-            label: "중급1",
-            total: 10,
-            completed: 5,
-            progress: 4,
-          },
-          {
-            name: "intermediate-2",
-            label: "중급2",
-            total: 10,
-            completed: 6,
-            progress: 2,
-          },
-          {
-            name: "advanced-1",
-            label: "고급1",
-            total: 10,
-            completed: 7,
-            progress: 2,
-          },
-          {
-            name: "advanced-2",
-            label: "고급2",
-            total: 10,
-            completed: 6,
-            progress: 4,
-          },
-        ],
-      },
-      {
-        id: 0,
-        favorite: false,
-        name: "2020-3",
-        label: "2020-3",
-        checked: false,
-        cells: [
-          {
-            name:"name",
-            label: "2020-3",
-          },
-          {
-            name: "modified",
-            label: "2020.01.02 오후 2:24",
-          },
-          {
-            name: "paymentProgress",
-            total: 60,
-            completed: 60,
-            progress: 0,
-          },
-        ],
-        childrenPaymentProgress: [
-          {
-            name: "beginner-1",
-            label: "초급1",
-            total: 10,
-            completed: 10,
-            progress: 0,
-          },
-          {
-            name: "beginner-2",
-            label: "초급2",
-            total: 10,
-            completed: 10,
-            progress: 0,
-          },
-          {
-            name: "intermediate-1",
-            label: "중급1",
-            total: 10,
-            completed: 10,
-            progress: 0,
-          },
-          {
-            name: "intermediate-2",
-            label: "중급2",
-            total: 10,
-            completed: 10,
-            progress: 0,
-          },
-          {
-            name: "advanced-1",
-            label: "고급1",
-            total: 10,
-            completed: 10,
-            progress: 0,
-          },
-          {
-            name: "advanced-2",
-            label: "고급2",
-            total: 10,
-            completed: 10,
-            progress: 0,
-          },
-        ],
-      },
-    ],
-    selectedRow,
-    setSelectedRow,
-    breadcrumbLinks,
-    handleIsSiderOpen,
-    loading,
-  }
-  const {body} = tableProps
+    collection().get()
+      .then(data=> console.log(data))
+      .catch(err => console.log(err))
+    setLoading(true)
+  },[currentPath])
+
+  useEffect(()=>{
+    if (loading){
+      dataCollection.get()
+        .then(data => {
+          // data.docs.forEach(doc=>console.log(doc.data()))
+          if (!!data && !!data.docs){
+            setDataDocuments(data.docs.map(doc=>doc.data()))
+            setLoading(false)
+          }
+        })
+        .catch(err => console.log(err))
+    }
+  }, [loading, dataCollection])
+
   const siderActions = [
     {
       name: "newPeriod",
@@ -246,19 +126,89 @@ const Data = (props) => {
     },
   ]
 
-  const newStudent = (props) => {
-    console.log(props)
+  const bodyProps = dataDocuments.map((period, index) => {
+    const {favorite, name, updatedAt} = period
+    const modified = new Date(updatedAt.seconds * 1000)
+    let completed = 0
+    let progress = 0
+    let courseAssigned = 0
+    const students = Object.entries(period.students).map(([k,v],i) => {
+      if (v.paymentStatus === "completed") {completed++}
+      else if (v.paymentStatus === "progress") {progress++}
+      if (v.courseName !== "none") {courseAssigned++}
+      return {[k]:v}
+    })
+    const courses = Object.entries(period.courses).map(([k,v],i) => {return {[k]:v}})
+    const staffs = Object.entries(period.staffs).map(([k,v],i) => {return {[k]:v}})
+    const total = students.length
+    return {
+      favorite,
+      name,
+      label: name,
+      checked: false,
+      students: {
+        name: "paymentProgress",
+        label: "학생",
+        total, completed, progress
+      },
+      courses,
+      staffs,
+      courseAssigned: {
+        name: "courseAssigned",
+        label: "수업 배정 현황",
+        total,
+        completed: courseAssigned,
+        progress: 0,
+      },
+      cells:[
+        {
+          name: "name",
+          label: name,
+        },
+        {
+          name: "modified",
+          label: modified.toLocaleString("ko-KR",{weekday:"narrow", day:"2-digit", month:"long", year:"numeric"}),
+        },
+        {
+          name: "paymentProgress",
+          total, completed, progress,
+        },
+      ]
+    }
+  })
+
+  const tableProps = {
+    header: [
+      {
+        id: 0,
+        name: "name",
+        label: "이름",
+      },
+      {
+        id: 1,
+        name: "modified",
+        label: "수정됨",
+      },
+      {
+        id: 2,
+        name: "current-status",
+        label: "현황",
+      },
+    ],
+    body: bodyProps,
+    breadcrumbLinks,
+    loading,
   }
-  // console.log(tableProps)
+
   const [openNewPeriodForm, setOpenNewPeriodForm] = useState(false);
 
-  const siderProps = {...props, isSiderOpen, handleIsSiderOpen, selectedRow, body, siderActions}
-  const newPeriodProps = {...props, openNewPeriodForm, setOpenNewPeriodForm}
+  const siderProps = {body: bodyProps,}
+  const tableManagerProps ={...props,tableProps, siderProps, siderActions, breadcrumbLinks, loading, setLoading,}
+  const newPeriodProps = {...props, openNewPeriodForm, setOpenNewPeriodForm, setLoading}
   return (
     <SubContent>
       <NewPeriod {...newPeriodProps}/>
-      <Table {...tableProps} {...props} />
-      {isSiderOpen && <Sider {...siderProps} />}
+      <TableManager {...tableManagerProps}/>
     </SubContent>
   )
 }

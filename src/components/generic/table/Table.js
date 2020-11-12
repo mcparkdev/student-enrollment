@@ -50,8 +50,10 @@ const Table = (props) => {
   const [allChecked, setAllChecked] = useState({
     checked: false,
     indeterminate: false,
+    disabled: false
   })
-  const [checkedItems, setCheckedItems] = useState(body.map(()=>false))
+  const [checkedItems, setCheckedItems] = useState(Array(body.length).fill(false))
+  // console.log(checkedItems)
   const isAllChecked = !checkedItems.includes(false)
   const isNoneChecked = !checkedItems.includes(true)
   const isPartiallyChecked = !isAllChecked && !isNoneChecked
@@ -60,12 +62,11 @@ const Table = (props) => {
       return checkedItems.map((checked, index)=> key === index ? !checked : checked )});
   };
   const handleAllChecked = () => {
-    setCheckedItems(checkedItems.map(() => isAllChecked ? false : true ))
+    setCheckedItems(checkedItems.map(() => isPartiallyChecked ? false : (isAllChecked ? false : true) ))
   }
   useEffect(() => {
-    setAllChecked({checked:isAllChecked, indeterminate:isPartiallyChecked})
+    setAllChecked({checked:isAllChecked, indeterminate:isPartiallyChecked, disabled:!checkedItems.length})
   }, [checkedItems, isAllChecked, isPartiallyChecked])
-  // console.log(isAllChecked, isNoneChecked, isPartiallyChecked)
   const toolbarProps = {router:props.router, viewport: props.viewport, isNoneChecked, breadcrumbLinks, handleIsSiderOpen, checkedItems, handleClickMore}
   const headerProps = {allChecked, handleAllChecked, header, viewport: props.viewport}
 
@@ -97,7 +98,7 @@ const Table = (props) => {
                   <Checkbox key={index} color="primary" checked={checkedItems[index]} onChange={() => handleCheckedItems(index)}/>
                 </td>
                 <td className="table-body-row-cell name">
-                  <NavLink to={`management/data/${name.name}`}>
+                  <NavLink to={`/management/data/${name.label}`}>
                     <Button startIcon={<FolderIcon color="disabled"/>}>
                       {name.label}
                     </Button>

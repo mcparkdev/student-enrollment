@@ -246,7 +246,7 @@ const TimelineComp = (props) => {
             console.log(timelineProps.length, index + 1)
             const last = timelineProps.length === index + 1
             return(
-              <TimelineItem>
+              <TimelineItem key={`timeline-item-${index}`}>
                 <TimelineSeparator>
                   <Tooltip placement="top" arrow title={actionLabels[action]} aria-label={action}>
                     <TimelineDot className={classes.timelineDot}>

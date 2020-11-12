@@ -9,8 +9,9 @@ const TableHeader = (props) => {
         <th className="table-header-row-cell checkbox">
           <Checkbox 
             key={`allchecked ${header[0].label}`}
-            checked={allChecked.checked}
-            indeterminate={allChecked.indeterminate}
+            {...allChecked}
+            // checked={allChecked.checked}
+            // indeterminate={allChecked.indeterminate}
             onChange={handleAllChecked}
             color="primary"
           />

@@ -16,12 +16,12 @@ export default function Enrollment(props) {
   const instructions = ["Seleccion el periodo académico", "Seleccione la modalidad del curso", "Seleccione el nombre del curso", "Seleccione el nivel del curso"]
   const options = {
     period:[
-      {name:"2020-4", label: "2020-4"},
-      {name:"2020-3", label: "2020-3"},
+      {name:20206, label: "2020-6"},
+      {name:20205, label: "2020-5"},
     ], 
     courseType:[
-      {name:"faceToFace", label:"1:00PM ~ 3:30 PM"},
-      {name:"online", label:"4:00PM ~ 6:30 PM"},
+      {name:"1", label:"1:00PM ~ 3:30 PM"},
+      {name:"2", label:"4:00PM ~ 6:30 PM"},
     ],
     courseName:[
       {name:"beginner-1", label:"Básico 1"},

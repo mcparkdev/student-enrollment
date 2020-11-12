@@ -31,10 +31,11 @@ const ConfirmPayment = (props) => {
   const {names, labels, instructions, options, currentUser, userName, storage} = props
   const {firstName, lastName} = userName
   const [values, setValues] = useState({
-    period:"20204",
-    courseType:"faceToFace",
+    period: 20206,
+    courseType:"1",
     courseName: "beginner-1",
     courseLevel: "1",
+    paymentStatus: "none"
   })
 
   const handleValues = (inputKey) => {
@@ -134,8 +135,9 @@ const ConfirmPayment = (props) => {
   // console.log(fieldProps)
 
   const finalSubmit = async (data) => {
-    const newData = await {...values, ...data, updatedAt: new Date()}
-    props.db.doc(`periods/${values.period}`).set({[props.currentUser.uid]: newData})
+    const newData = await {...values, ...data}
+    console.log(newData)
+    props.db.doc(`periods/${values.period}`).update({["students." + props.currentUser.uid]: newData, updatedAt: new Date()})
       .then(doc =>{
         alert("Data updated successfully")
         // setLoading(true)
@@ -160,7 +162,7 @@ const ConfirmPayment = (props) => {
       if (!!file && !!file.file) {
         fileNames.forEach(name=>{
           console.log(name)
-          const path = `periods/${values.period}/${props.currentUser.uid}`
+          const path = `periods/${values.period}/students/${props.currentUser.uid}/paymentConfirmation`
           const file = files[name]
           const storageRef = storage.ref().child(path)
           // const adevecoRef = storageRef.child(path);
