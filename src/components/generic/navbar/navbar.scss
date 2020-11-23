@@ -1,6 +1,6 @@
 @import "../../../App.scss";
 
-.enrollment-navbar {
+.navbar {
   @extend %noselect;
   ul {
     li {
@@ -10,19 +10,20 @@
   position: fixed;
   top: 0;
   z-index: 10;
-  // left: 0rem;
-  // right: 2rem;
+  width: calc(100% - 32px);
+  padding: 8px 16px;
   display: flex;
   justify-content: space-between;
-  font-size: 14px;
-  @extend %width-all;
-  font-weight: 400;
+  font-size: 18px;
+  font-weight: 600;
   a {
-    color: $white;
+    color: $black-2f;
   }
-  color: $white;
-  height: 56px;
-  background: $black-2f;
+  color: $black-2f;
+  height: 40px;
+  background: $white;
+  border-bottom: 2px solid $black-da;
+
   #menu {
     @extend %flex-center;
     font-size: 16px;
@@ -40,7 +41,7 @@
     //   color: $black-42;
     // }
   }
-  .enrollment-navbar-left {
+  .navbar-left {
     @extend %flex-center;
     li,
     a {
@@ -55,7 +56,7 @@
       margin-right: 8px;
     }
   }
-  .enrollment-navbar-center {
+  .navbar-center {
     @extend %flex-center;
     min-width: 0px;
     flex: 0 1 400px;
@@ -65,40 +66,21 @@
       flex: 0 1 400px;
     }
   }
-  .enrollment-navbar-right {
+  .navbar-right {
     position: relative;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    .enrollment-navbar-item {
+    .navbar-item {
       @extend %flex-center;
       width: 40px;
       height: 40px;
-      border-radius: 40px;
-      transition: background 0.2s ease-in-out;
-      @include media(">sm") {
-        &:hover {
-          background: $black-42;
-        }
-      }
+      margin: 0 !important;
     }
   }
   @include media("<=sm") {
     @include black-shadow(0px, 0px, 5px, 0, 0.2);
-    height: 48px;
-    color: $black-2f;
-    background: $white;
-    .profile-button {
-      color: $black-70;
-    }
-    .enrollment-navbar-item {
-      &:hover {
-        background: $black-ef;
-      }
-    }
-    a {
-      color: $black-2f;
-    }
+    // height: 48px;
   }
 }

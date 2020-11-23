@@ -8,24 +8,24 @@ import ProfileMenu from './profileMenu/ProfileMenu';
 
 export default function Navbar(props) {
   return (
-    <div className="enrollment-navbar">
-      <ul className="enrollment-navbar-left">
-        <li className="enrollment-navbar-item">
-          <NavLink to="/home/announcements">
+    <div className="navbar">
+      <ul className="navbar-left">
+        <li className="navbar-item">
+          <NavLink to="/home">
             <img src={logo} alt="" />
             <div>
             {/* {isMobile ? "CCC" : "Colegio Colombo Coreano"} */}
-            제콜롬비아한국학교
+            재콜롬비아한국학교
             </div>
           </NavLink>
         </li>
       </ul>
-      {/* <ul className="enrollment-navbar-center" style={props.nonMobile}>
+      {/* <ul className="navbar-center" style={props.nonMobile}>
       </ul> */}
-      <ul className="enrollment-navbar-right">
-        {/* <li className="enrollment-navbar-item" ><SearchIcon/></li>
-        <li className="enrollment-navbar-item" ><MenuIcon/></li> */}
-        <li className="enrollment-navbar-item" >
+      <ul className="navbar-right">
+        {/* <li className="navbar-item" ><SearchIcon/></li>
+        <li className="navbar-item" ><MenuIcon/></li> */}
+        <li className="navbar-item" >
           <ProfileMenu {...props} />
         </li>
       </ul>

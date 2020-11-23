@@ -30,6 +30,9 @@ const SubContentSider = (props) => {
             <ArrowBackIcon/>
           </IconButton>
         </div>
+        <div className="subcontent-sider-header">
+          {header}
+        </div>
         {props.children}
       </div>
     </Dialog>

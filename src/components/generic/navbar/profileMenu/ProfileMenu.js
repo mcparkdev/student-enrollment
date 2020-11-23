@@ -4,9 +4,26 @@ import { auth } from "../../../../firebase";
 
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import { NavLink } from "react-router-dom";
+import { makeStyles } from '@material-ui/core/styles';
+import IconButton from '@material-ui/core/IconButton'
+import Button from '@material-ui/core/Button'
+
+
+const useStyles = makeStyles((theme) => ({
+  siderItem: {
+    textAlign: "left",
+    padding: "12px 24px",
+    '& .MuiButton-label': {
+      justifyContent: "flex-start",
+    }
+  },
+}));
+
 
 export default function ProfileMenu(props) {
-  const {items, profileMenu, handleItemKey, showMenu, setShowMenu, handleShowMenu, fullName} = props
+  const classes = useStyles();
+
+  const {items, menuDivision, handleItemKey, showMenu, setShowMenu, handleShowMenu, fullName} = props
   const node = useRef();
 
   useEffect(() => {
@@ -33,7 +50,9 @@ export default function ProfileMenu(props) {
   return (
     <div ref={node} className="profile-button-menu">
       <div className="profile-button" onClick={() => handleShowMenu()}>
-        <AccountCircleIcon/>
+        <IconButton>
+          <AccountCircleIcon/>
+        </IconButton>
       </div>
       <div className="profile-menu" style={{display:showMenu ? "flex" : "none"}}>
         <ul className="profile-menu-main-item-container">
@@ -42,7 +61,7 @@ export default function ProfileMenu(props) {
               {fullName}
             </li>
           </NavLink>
-          <li className="profile-menu-item">
+          <li className="profile-menu-item email">
             {auth.currentUser.email}
           </li>
           {/* <li id="account-status" className="profile-menu-item">
@@ -60,7 +79,7 @@ export default function ProfileMenu(props) {
             </div>
           </li> */}
         </ul>
-        {profileMenu.map((itemContainer, index) => {
+        {menuDivision.map((itemContainer, index) => {
           return(
             <ul className="profile-menu-item-container" key={index}>
               {itemContainer.map(key=>{
@@ -68,9 +87,17 @@ export default function ProfileMenu(props) {
                 const {label, name, icon} = currentItem
                 return(
                   <NavLink to={`/${name}`} key={label} >
-                    <li className="profile-menu-item" onClick={() => handleItemKey(key)}>
-                      {icon}
-                      {label}
+                    <li className="profile-menu-item">
+                      <Button 
+                        startIcon={icon} 
+                        onClick={()=>handleItemKey(key)} 
+                        fullWidth 
+                        size="large" 
+                        // color={selected ? "primary" : "default"}
+                        className={classes.siderItem} 
+                        >
+                        {label}
+                      </Button>
                     </li>
                   </NavLink>
                 )

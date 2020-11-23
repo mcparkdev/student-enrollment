@@ -8,7 +8,7 @@
   font-size: 20px;
   border-radius: 50px;
   // border: 1px solid $white;
-  color: $white;
+  color: $black-2f;
   margin: 0;
   span,
   span svg {
@@ -48,19 +48,7 @@
     width: 100%;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     li {
-      svg {
-        font-size: 20px;
-        margin-right: 16px;
-      }
-      display: flex;
-      align-items: center;
-      height: 40px;
-      width: calc(100% - 32px);
-      margin: 0;
-      padding: 0 16px;
-      &:hover {
-        background: #eee;
-      }
+      margin: 0 !important;
       .account-status-item-container {
         display: flex;
         flex-flow: wrap;
@@ -68,23 +56,6 @@
           display: flex;
           position: relative;
           flex-direction: column;
-          padding-right: 8px;
-          .account-status-text {
-            @extend %flex-center;
-            justify-content: flex-start;
-            font-size: 16px;
-            font-weight: 500;
-          }
-          .account-status-label {
-            font-size: 12px;
-            position: absolute;
-            top: 16px;
-            left: 0px;
-          }
-        }
-        :last-child {
-          display: flex;
-          padding-right: 0;
         }
       }
     }
@@ -103,9 +74,13 @@
       }
     }
     & .full-name {
+      padding: 0 16px;
       font-size: 20px;
       font-weight: 600;
       height: 24px;
+    }
+    & .email {
+      padding: 0 16px;
     }
   }
   :last-child {

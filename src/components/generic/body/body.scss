@@ -3,11 +3,15 @@
 .body {
   position: absolute;
   left: 0;
+  @include media(">sm") {
+    left: 242px;
+  }
   right: 0;
   display: flex;
   flex-direction: column;
   z-index: 0;
-  background: $black-f9;
+  bottom: 0;
+  // background: $black-f9;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -15,15 +19,15 @@
   // height: fit-content;
   overflow-y: auto;
   @include media(">sm") {
-    top: calc(56px * 2);
-    @extend %width-all;
+    top: calc(58px);
+    // @extend %width-all;
     flex: 1;
-    min-height: calc(100% - 112px);
+    // min-height: calc(100% - 112px);
   }
   @include media("<=sm") {
     // height: calc(100vh - 48px - 48px);
     flex: 1;
-    min-height: calc(100% - 96px);
+    // min-height: calc(100% - 96px);
     top: 48px;
     width: 100%;
     bottom: 48px;

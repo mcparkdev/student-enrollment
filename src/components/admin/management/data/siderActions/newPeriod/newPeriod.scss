@@ -1,8 +1,11 @@
-@import "../../../../../App.scss";
+@import "../../../../../../App.scss";
 
 .MuiDialog-root {
   .dialog-form-input {
     width: inherit;
     padding-bottom: 16px;
+  }
+  & .MuiDialog-paper {
+    margin: 0;
   }
 }

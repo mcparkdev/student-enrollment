@@ -89,7 +89,7 @@ export default function App() {
             <>
               {auth.currentUser.uid === "Yhn3f8vAjsVqtGCzNEM0zyPOrQq1" ?
                 <>
-                  <Redirect to="/home/timeline"/>
+                  <Redirect to="/management"/>
                   <Route
                     path="/"
                     render={({ match, history, location }) => {

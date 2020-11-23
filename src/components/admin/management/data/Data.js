@@ -5,21 +5,12 @@ import "./data.scss"
 
 import SubContent from '../../../generic/subcontent/SubContent'
 import TableManager from "../../../generic/tableManager/TableManager"
-import NewPeriod from './newPeriod/NewPeriod';
-
-import AddIcon from '@material-ui/icons/Add';
-
-// import Sider from './sider/Sider'
-
-
-const newStudent = (props) => {
-  console.log(props)
-}
+import SiderActions from './siderActions/SiderActions'
 
 const giveBreadcrumbLinks = (currentPath) => {
-  const splits = currentPath.split("/").filter((item, index) => index > 1)
+  const splits = currentPath.split("/").filter((item, index) => index > 0)
   const links = splits.map((item, i) => {
-    let path = "/management"
+    let path = ""
     splits.forEach((split, splitIndex)=>{
       // console.log(i,splitIndex)
       // console.log(item, split)
@@ -28,7 +19,8 @@ const giveBreadcrumbLinks = (currentPath) => {
       }
       // console.log(path)
     })
-    const label = item === "data" ? "재콜롬비아한국학교" : item
+    
+    const label = item === "management" ? "재콜롬비아한국학교" : item
     return {
       name: path,
       label: label,
@@ -44,27 +36,32 @@ const Data = (props) => {
   const [dataCollection, setDataCollection] = useState(db.collection("periods").orderBy("name", "desc"))
   const [dataDocuments, setDataDocuments] = useState([])
   const [breadcrumbLinks, setBreadcrumbLinks] = useState([{
-    name: "제콜롬비아한국학교",
-    label: "제콜롬비아한국학교",
-    path: "/management/data",
+    name: "재콜롬비아한국학교",
+    label: "재콜롬비아한국학교",
+    path: "/management",
   },])
-
+  const [currentFolder, setCurrentFolder] = useState("periods")
+  const [isSiderOpen, setIsSiderOpen] = useState(props.viewport.xs ? false : true)
+  const handleIsSiderOpen = () => {
+    setIsSiderOpen(prevIsSiderOpen => !prevIsSiderOpen)
+  }
   const currentPath = props.router.location.pathname
 
   useEffect(()=>{
+    // const values
     const links = giveBreadcrumbLinks(currentPath)
+    console.log(links)
     setBreadcrumbLinks(links)
     // setBreadcrumbLinks(giveBreadcrumbLinks(currentPath))
-    console.log(links)
     const collection = () => {
       switch (links.length){
-        case 2: return db.collection("courses").where("period.name", "==", links[1].label).orderBy("filter", "desc");
-        case 3: return db.collection("courses").where("period.name", "==", links[2].label).orderBy("filter", "desc");
-        default: return db.collection("periods").orderBy("name", "desc");
+        case 2: setCurrentFolder("courses"); return db.collection("courses").where("period.name", "==", links[1].label).orderBy("id", "desc");
+        case 3: setCurrentFolder("courseLevels"); return db.collection("courses").where("period.name", "==", links[2].label).orderBy("id", "desc");
+        default: setCurrentFolder("periods"); return db.collection("periods").orderBy("name", "desc");
       }
     }
     collection().get()
-      .then(data=> console.log(data))
+      .then(data=> console.log(data.docs.map(doc=>doc.data())))
       .catch(err => console.log(err))
     setLoading(true)
   },[currentPath])
@@ -82,49 +79,6 @@ const Data = (props) => {
         .catch(err => console.log(err))
     }
   }, [loading, dataCollection])
-
-  const siderActions = [
-    {
-      name: "newPeriod",
-      label: "새 학기",
-      buttonProps: {
-        color:"primary",
-        startIcon: <AddIcon />,
-        fullWidth: props.viewport.xs ? true : false,
-        onClick: () => setOpenNewPeriodForm(true)
-      }
-    },
-    {
-      name: "newCourse",
-      label: "새 수업",
-      buttonProps: {
-        color:"primary",
-        startIcon: <AddIcon />,
-        fullWidth: props.viewport.xs ? true : false,
-        onClick: () => newStudent("새 수업")
-      }
-    },
-    {
-      name: "newStaff",
-      label: "새 교사",
-      buttonProps: {
-        color:"primary",
-        startIcon: <AddIcon />,
-        fullWidth: props.viewport.xs ? true : false,
-        onClick: () => newStudent("새 교사")
-      }
-    },
-    {
-      name: "newStudent",
-      label: "새 학생",
-      buttonProps: {
-        color:"primary",
-        startIcon: <AddIcon />,
-        fullWidth: props.viewport.xs ? true : false,
-        onClick: () => newStudent("새 학생")
-      }
-    },
-  ]
 
   const bodyProps = dataDocuments.map((period, index) => {
     const {favorite, name, updatedAt} = period
@@ -200,15 +154,14 @@ const Data = (props) => {
     loading,
   }
 
-  const [openNewPeriodForm, setOpenNewPeriodForm] = useState(false);
-
-  const siderProps = {body: bodyProps,}
-  const tableManagerProps ={...props,tableProps, siderProps, siderActions, breadcrumbLinks, loading, setLoading,}
-  const newPeriodProps = {...props, openNewPeriodForm, setOpenNewPeriodForm, setLoading}
+  const siderProps = {body: bodyProps}
+  // console.log(bodyProps)
+  const tableManagerProps ={...props,tableProps, siderProps, currentFolder, currentPath, breadcrumbLinks, loading, setLoading, isSiderOpen, setIsSiderOpen, handleIsSiderOpen}
   return (
     <SubContent>
-      <NewPeriod {...newPeriodProps}/>
-      <TableManager {...tableManagerProps}/>
+      <TableManager {...tableManagerProps}>
+        <SiderActions {...tableManagerProps}/>
+      </TableManager>
     </SubContent>
   )
 }

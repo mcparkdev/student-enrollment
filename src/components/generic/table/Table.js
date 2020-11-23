@@ -52,16 +52,23 @@ const Table = (props) => {
     indeterminate: false,
     disabled: false
   })
-  const [checkedItems, setCheckedItems] = useState(Array(body.length).fill(false))
-  // console.log(checkedItems)
+  const [checkedItems, setCheckedItems] = useState(Array(props.body.length).fill(false))
+  
+  useEffect(()=>{
+    // console.log(props.body.length)
+    setCheckedItems(Array(props.body.length).fill(false))
+  },[props.body])
+
   const isAllChecked = !checkedItems.includes(false)
   const isNoneChecked = !checkedItems.includes(true)
   const isPartiallyChecked = !isAllChecked && !isNoneChecked
   const handleCheckedItems = (key) => {
+    console.log("handleCheckedItems")
     return setCheckedItems((event) => {
       return checkedItems.map((checked, index)=> key === index ? !checked : checked )});
   };
   const handleAllChecked = () => {
+    console.log("handleAll")
     setCheckedItems(checkedItems.map(() => isPartiallyChecked ? false : (isAllChecked ? false : true) ))
   }
   useEffect(() => {
@@ -98,7 +105,7 @@ const Table = (props) => {
                   <Checkbox key={index} color="primary" checked={checkedItems[index]} onChange={() => handleCheckedItems(index)}/>
                 </td>
                 <td className="table-body-row-cell name">
-                  <NavLink to={`/management/data/${name.label}`}>
+                  <NavLink to={`/management/${name.label}`}>
                     <Button startIcon={<FolderIcon color="disabled"/>}>
                       {name.label}
                     </Button>

@@ -7,18 +7,17 @@ import { NavLink } from 'react-router-dom'
 
 const genericBreadcrumbs = (props) => {
   const {links, viewport, router} = props
-  const lastLink = links.length > 0 ? links[links.length - 1] : {label: "제콜롬비아 한국학교", path: "/management/data"}
+  const lastLink = links.length > 0 ? links[links.length - 1] : {label: "재콜롬비아한국학교", path: "/management"}
   const {xs} = viewport
   return (
     <>
-      {router.location.pathname !== "/management/data" && 
+      {router.location.pathname !== "/management" && 
           <IconButton aria-label="back" onClick={()=>router.history.goBack()}>
             <ArrowBackIcon/>
           </IconButton>
         }
       {xs ? 
       <>
-        
         <Breadcrumbs>
           <NavLink to={lastLink.path} style={{fontWeight: 700}}>
             {lastLink.label}

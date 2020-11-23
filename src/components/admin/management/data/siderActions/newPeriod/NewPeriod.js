@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 
 import "./newPeriod.scss"
-import { db } from "../../../../../firebase"
+import { db } from "../../../../../../firebase"
 import Button from "@material-ui/core/Button"
 import TextField from '@material-ui/core/TextField'
 import MenuItem from '@material-ui/core/MenuItem'
@@ -11,9 +11,9 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText'
 // import DialogTitle from '@material-ui/core/DialogTitle';
-
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
+
 import MultipleDatesPicker from '@randex/material-ui-multiple-dates-picker'
 
 import {MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
@@ -48,6 +48,7 @@ const defaultValues = [
 
 const NewPeriod = (props) => {
   const theme = useTheme();
+  const {openNewPeriodForm, setOpenNewPeriodForm} = props
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
   const [newPeriodYear, setNewPeriodYear] = useState(defaultValues[0])
   const [newPeriodBimester, setNewPeriodBimester] = useState(defaultValues[1])
@@ -97,8 +98,13 @@ const NewPeriod = (props) => {
       db.collection("periods").where("name", "==", name).get()
       .then(data => {
         if (data.empty) {
-          db.collection('periods').doc(name.toString()).set(periodProps)
-          .then(()=>{alert("학기가 생성 되었습니다."); onReset(); props.setLoading(true)})
+          db.collection('periods').doc(name).set(periodProps)
+          .then(()=>{
+            alert("학기가 생성 되었습니다.");
+            onReset();
+            props.setLoading(true)
+            if (props.viewport.xs) props.handleIsSiderOpen()
+          })
           .catch(err => {console.log(err);alert("학기를 생성하지 못 했습니다.");})
         }
         else alert(`${year}-${bimester} 학기는 이미 존재합니다.`)
@@ -150,8 +156,6 @@ const NewPeriod = (props) => {
       onSubmit: handleNewPeriodDates,
     }
   }
-  // console.log(bimesterProps())
-  const {openNewPeriodForm, setOpenNewPeriodForm} = props
   return (
     <Dialog fullScreen={fullScreen} open={openNewPeriodForm} onClose={()=>setOpenNewPeriodForm(false)} aria-labelledby="form-dialog-title" max-width="sm" fullWidth>
       <div className="dialog-title" style={{fontSize: 24, fontWeight: 700, flex: "0 0 auto", margin: 0, padding: "16px 24px"}}>새 학기</div>
@@ -193,7 +197,6 @@ const NewPeriod = (props) => {
           만들기
         </Button>
       </DialogActions>
-      
     </Dialog>
   )
 }
