@@ -7,9 +7,9 @@ import { Button } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import WhatsAppIcon from '@material-ui/icons/WhatsApp';
 
-import Header from '../../../generic/subcontent/header/Header';
-import Body from '../../../generic/subcontent/body/Body';
-import Footer from '../../../generic/subcontent/footer/Footer';
+import Header from '../../../generic1/subcontent/header/Header';
+import Body from '../../../generic1/subcontent/body/Body';
+import Footer from '../../../generic1/subcontent/footer/Footer';
 
 function AdevecoData(props) {
   const names = ["member", "adevecoCertificateUrl"]

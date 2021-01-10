@@ -40,6 +40,7 @@ const Data = (props) => {
     label: "재콜롬비아한국학교",
     path: "/management",
   },])
+  console.log(setDataCollection)
   const [currentFolder, setCurrentFolder] = useState("periods")
   const [isSiderOpen, setIsSiderOpen] = useState(props.viewport.xs ? false : true)
   const handleIsSiderOpen = () => {
@@ -96,6 +97,7 @@ const Data = (props) => {
     const staffs = Object.entries(period.staffs).map(([k,v],i) => {return {[k]:v}})
     const total = students.length
     return {
+      id: index,
       favorite,
       name,
       label: name,

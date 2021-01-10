@@ -2,31 +2,29 @@ import React, { useState, useEffect } from "react";
 import "./App.scss";
 
 // auth
-import { auth, db } from "./firebase";
+import { auth } from "./firebase";
 import "./firebase";
 
 // custom Components
-import Landing from "./components/landing/Landing";
-import Enrollment from "./components/enrollment/Enrollment";
-import Admin from "./components/admin/Admin";
 import useWindowSize from "./WindowDimensions";
 
 // third-parties
-import { BrowserRouter as Router, Redirect, Route } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-// import { useFieldArray } from "react-hook-form";
+import Account from "./components/account/Account";
+import Button from "@material-ui/core/Button"
 
 
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: "#1479ff",
+      main: "#20416D",
       // main: "#007fff",
     },
-    // secondary: {
-    //   main: "#ff80ab",
-    //   contrastText: "#fff",
-    // }
+    secondary: {
+      main: "#f3f8ff",
+      contrastText: "#758EAF",
+    }
   },
   typography: {
     fontFamily: [
@@ -50,27 +48,27 @@ const theme = createMuiTheme({
 
 export default function App() {
   const [isSignedIn, setIsSignedIn] = useState(false);
-  const [userName, setUserName] = useState({firstName:"",lastName:""})
+  // const [userName, setUserName] = useState({firstName:"",lastName:""})
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       setIsSignedIn(!!user);
       console.log("User: ", user);
       console.log(auth.currentUser)
-      if(user!==null){
-        db.collection('students').doc(user.uid).collection('data').doc('personal').get()
-        .then(doc => {
-          if(!!doc){
-            const data = doc.data()
-            if (doc.data() !== undefined) {
-              const {firstName, lastName} = data
-              console.log(firstName, lastName)
-              setUserName({firstName, lastName})
-            }
-          }
-          else console.log("Document not found")
-        })
-        .catch(err=>console.log(err))
-      }
+      // if(user!==null){
+      //   db.collection('students').doc(user.uid).collection('data').doc('personal').get()
+      //   .then(doc => {
+      //     if(!!doc){
+      //       const data = doc.data()
+      //       if (doc.data() !== undefined) {
+      //         const {firstName, lastName} = data
+      //         console.log(firstName, lastName)
+      //         setUserName({firstName, lastName})
+      //       }
+      //     }
+      //     else console.log("Document not found")
+      //   })
+      //   .catch(err=>console.log(err))
+      // }
     });
   }, []);
   const { height, width } = useWindowSize();
@@ -81,6 +79,7 @@ export default function App() {
   const xl = ( width >= 1920)
   const viewport= { height, width, xs, sm, md, lg, xl}
   const nonMobile = xs ? {display:"none"} : {}
+  console.log( {viewport,nonMobile})
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
@@ -88,8 +87,10 @@ export default function App() {
           {isSignedIn && auth ? (
             <>
               {auth.currentUser.uid === "Yhn3f8vAjsVqtGCzNEM0zyPOrQq1" ?
-                <>
-                  <Redirect to="/management"/>
+                <div>
+                관리자
+                <Button variant="contained" color="primary" onClick={()=>auth.signOut()}>로그아웃</Button>
+                  {/* <Redirect to="/management"/>
                   <Route
                     path="/"
                     render={({ match, history, location }) => {
@@ -97,11 +98,13 @@ export default function App() {
                       return (
                       <Admin {...allProps}/>
                     )}}
-                  />
-                </>
+                  /> */}
+                </div>
                 :
-                <>
-                  <Redirect to="/home/announcements" /> 
+                <div>
+                  학생
+                  <Button variant="contained" color="primary" onClick={()=>auth.signOut()}>로그아웃</Button>
+                  {/* <Redirect to="/home/announcements" /> 
                   <Route
                     path="/"
                     render={({ match, history, location }) => {
@@ -109,13 +112,14 @@ export default function App() {
                       return (
                       <Enrollment {...allProps}/>
                     )}}
-                  />
-                </>
+                  /> */}
+                </div>
               }
             </>
           ) : (
             <>
-              <Redirect to="/landing" />
+            <Account/>
+              {/* <Redirect to="/landing" />
               <Route
                 exact
                 path="/landing"
@@ -128,7 +132,7 @@ export default function App() {
                     nonMobile={nonMobile}
                   />
                 )}
-              />
+              /> */}
             </>
           )}
         </Router>

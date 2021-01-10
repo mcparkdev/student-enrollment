@@ -4,8 +4,8 @@ import Form from "./form/Form"
 import Skeleton from '@material-ui/lab/Skeleton';
 import 'moment/locale/es'
 
-import Header from '../../../generic/subcontent/header/Header';
-import Body from '../../../generic/subcontent/body/Body';
+import Header from '../../../generic1/subcontent/header/Header';
+import Body from '../../../generic1/subcontent/body/Body';
 
 function ResponsibleData(props) {
   // The configuration for responsibleData's form

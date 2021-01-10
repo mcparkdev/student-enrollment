@@ -42,7 +42,7 @@ export default function Enrollment(props) {
   const labels = ["관리", "대시보드", "계정", "로그아웃", "도움", "개발자"]
   const names = ["management", "dashboard", "account", "signOut", "help", "developer"]
   const icons = [<StorageIcon/>, <InsertChartIcon/>, <AccountCircleIcon/>, <ExitToAppIcon/>, <HelpIcon/>, <CodeIcon/>]
-  const keys = [0, 1, 2, 3, 4,5]
+  const keys = [0, 1, 2, 3, 4, 5]
   const menuDivision = [[2,3],[0,1],[4,5]]
   const sider = [0,1,4]  
   const items = names.map((name,index)=>{

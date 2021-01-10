@@ -5,8 +5,8 @@ import Skeleton from '@material-ui/lab/Skeleton';
 import 'moment/locale/es'
 import colombiaData from "./colombia.json"
 
-import Header from '../../../generic/subcontent/header/Header';
-import Body from '../../../generic/subcontent/body/Body';
+import Header from '../../../generic1/subcontent/header/Header';
+import Body from '../../../generic1/subcontent/body/Body';
 
 function ResidentialData(props) {
   // The configuration for residentialData's form

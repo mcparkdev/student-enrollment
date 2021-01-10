@@ -5,9 +5,9 @@ import banner from "../../../../media/news.jpg"
 // import Header from '../subcontent/header/Header'
 // import Body from "../subcontent/body/Body"
 // import Footer from '../subcontent/footer/Footer'
-import Banner from "../../../generic/subcontent/banner/Banner"
-import SubContent from '../../../generic/subcontent/SubContent'
-import SubContentEnd from '../../../generic/subcontent/SubContentEnd'
+import Banner from "../../../generic1/subcontent/banner/Banner"
+import SubContent from '../../../generic1/subcontent/SubContent'
+import SubContentEnd from '../../../generic1/subcontent/SubContentEnd'
 
 import { Divider, IconButton, Paper } from '@material-ui/core'
 import Autocomplete from '@material-ui/lab/Autocomplete';

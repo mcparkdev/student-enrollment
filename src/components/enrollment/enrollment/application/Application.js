@@ -1,10 +1,10 @@
 import React from 'react'
 
 import "./application.scss"
-import Body from '../../../generic/subcontent/body/Body'
-import Header from '../../../generic/subcontent/header/Header'
-import SubContent from '../../../generic/subcontent/SubContent'
-import SubContentEnd from "../../../generic/subcontent/SubContentEnd"
+import Body from '../../../generic1/subcontent/body/Body'
+import Header from '../../../generic1/subcontent/header/Header'
+import SubContent from '../../../generic1/subcontent/SubContent'
+import SubContentEnd from "../../../generic1/subcontent/SubContentEnd"
 
 import { makeStyles } from '@material-ui/core/styles';
 import Accordion from '@material-ui/core/Accordion';

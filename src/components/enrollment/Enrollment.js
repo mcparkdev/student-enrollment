@@ -16,9 +16,9 @@ import CodeIcon from '@material-ui/icons/Code';
 import FeedbackIcon from '@material-ui/icons/Feedback';
 import HelpIcon from '@material-ui/icons/Help';
 
-import Navbar from "../generic/navbar/Navbar";
-import SubNavbar from "../generic/subNavbar/SubNavbar"
-import Body from "../generic/body/Body";
+import Navbar from "../generic1/navbar/Navbar";
+import SubNavbar from "../generic1/subNavbar/SubNavbar"
+import Body from "../generic1/body/Body";
 import { Redirect, Route, Switch } from "react-router-dom";
 
 export default function Enrollment(props) {

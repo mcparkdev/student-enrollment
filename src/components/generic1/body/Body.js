@@ -6,9 +6,9 @@ import "./body.scss";
 // import Enrollment from './enrollment/Enrollment';
 
 export default function Body(props) {
-  const {items, itemKey} = props
-  const item = items[itemKey]
-  const {label, name} = item
+  // const {items, itemKey} = props
+  // const item = items[itemKey]
+  // const {label, name} = item
   return (
     <div className="body">
       {/* {banner !== false &&

@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 
 import {useForm} from "react-hook-form"
 
-import Header from '../../../../generic/subcontent/header/Header'
-import Body from '../../../../generic/subcontent/body/Body'
-import SubContent from '../../../../generic/subcontent/SubContent'
-import SubContentEnd from '../../../../generic/subcontent/SubContentEnd'
+import Header from '../../../../generic1/subcontent/header/Header'
+import Body from '../../../../generic1/subcontent/body/Body'
+import SubContent from '../../../../generic1/subcontent/SubContent'
+import SubContentEnd from '../../../../generic1/subcontent/SubContentEnd'
 
 import "./confirmPayment.scss"
 
