@@ -109,37 +109,6 @@ $border-primary: rgba(126, 155, 255, 0.3);
   font-weight: 300;
 }
 
-%width-sm {
-  @include media("<=sm") {
-    padding: 0 12px;
-    width: calc(100vw - 24px);
-  }
-}
-%width-md {
-  @include media(">sm", "<=md") {
-    width: 600px;
-    padding: 0 calc(50vw - 300px);
-  }
-}
-%width-lg {
-  @include media(">md", "<=lg") {
-    width: 960px;
-    padding: 0 calc(50vw - 480px);
-  }
-}
-%width-xl {
-  @include media(">lg") {
-    width: 1280px;
-    padding: 0 calc(50vw - 640px);
-  }
-}
-%width-all {
-  @extend %width-xl;
-  @extend %width-lg;
-  @extend %width-md;
-  @extend %width-sm;
-}
-
 html {
   font-size: 16px;
   ::-webkit-scrollbar {
