@@ -18,7 +18,7 @@
     "firebase-admin": "^9.3.0",
     "include-media": "^1.4.9",
     "moment": "^2.29.1",
-    "node-sass": "^5.0.0",
+    "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-checkbox-tree": "^1.6.0",
     "react-dom": "^16.13.1",
