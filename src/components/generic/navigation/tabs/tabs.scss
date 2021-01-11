@@ -1,0 +1,33 @@
+@import "../../../../App.scss";
+
+.tab-container {
+  a {
+    color: $primary-color;
+  }
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  &.outlined {
+    align-items: flex-end;
+    width: 100%;
+    .tab {
+      border-bottom: 1px solid $primary-color;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      &.selected {
+        border: 1px solid $primary-color;
+        border-bottom: 0;
+      }
+    }
+  }
+  .tab {
+    opacity: 0.5;
+    &.selected {
+      opacity: 1;
+    }
+    &.ghost {
+      flex: 1 1 auto;
+    }
+  }
+}

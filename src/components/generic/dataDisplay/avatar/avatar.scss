@@ -1,0 +1,22 @@
+@import "../../../../App.scss";
+
+.avatar {
+  .status {
+    @extend %flex-center;
+    height: 46px;
+    width: 46px;
+    border-radius: 50%;
+    border: 2px solid $primary-color-light;
+    .text {
+      @extend %flex-center;
+      height: 40px;
+      width: 40px;
+      border-radius: 50%;
+      background: $primary-color;
+      color: $auxilary-color;
+    }
+  }
+  & .new {
+    border: 2px solid $primary-color;
+  }
+}

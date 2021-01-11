@@ -1,10 +1,10 @@
 import React, {useState} from 'react'
 
 import "./account.scss"
-import Sign from "./Sign/Sign"
+import Sign from "./sign/Sign"
 import logo from "../../media/logo.png"
 import Paper from '../generic/paper/Paper'
-import IconBox from '../generic/iconBox/IconBox'
+import ImageBox from '../generic/imageBox/ImageBox'
 
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
@@ -16,6 +16,9 @@ import SwapHorizIcon from '@material-ui/icons/SwapHoriz';
 import {useForm} from "react-hook-form"
 import * as Yup from "yup";
 import { yupResolver } from '@hookform/resolvers/yup';
+import Recover from './recover/Recover'
+import Privacy from './Privacy'
+import Terms from './Terms'
 
 // form validation for sign in/out
 
@@ -28,6 +31,15 @@ const Account = (props) => {
   const [language, setLanguage] = useState("korean")
   // message for authentication result
   const [authMsg, setAuthMsg] = useState({})
+  const [openPrivacyDialog, setOpenPrivacyDialog] = useState(false)
+  const [openTermsDialog, setOpenTermsDialog] = useState(false)
+  const [openRecoverDialog, setOpenRecoverDialog] = useState(false)
+  const [recoverType, setRecoverType] = useState("recoverEmail")
+  const handleRecover = (type) => {
+    setOpenRecoverDialog(!openRecoverDialog)
+    setRecoverType(type)
+  }
+
   const handleLanguage = () => {
     setLanguage(language === "korean" ? "spanish" : "korean")
   }
@@ -42,53 +54,74 @@ const Account = (props) => {
   const validationMessages = {
     korean:{
       firstName:{
-        required:"이름을 입력하세요"
+        required:"이름을 입력하세요."
       },
       lastName:{
-        required:"성을 입력하세요"
+        required:"성을 입력하세요."
       },
       email:{
-        error: authMsg.email ? authMsg.email : "잘못된 이메일입니다. 다시 입력해주세요",
-        required:"이메일을 입력하세요"
+        error: authMsg.email ? authMsg.email : "잘못된 이메일입니다. 다시 입력하세요.",
+        required:"이메일을 입력하세요."
       },
       password:{
-        error: authMsg.password ? authMsg.password : "비밀번호는 8자 이상이어야 합니다",
-        required:"비밀번호를 입력하세요"
-      }
+        error: authMsg.password ? authMsg.password : "비밀번호는 8자 이상이어야 합니다.",
+        required:"비밀번호를 입력하세요."
+      },
+      recoverEmail:{
+        error: authMsg.recoverEmail ? authMsg.recoverEmail : "학생ID는 8자리 숫자입니다.",
+        required:"사용자 학생ID를 입력하세요."
+      },
+      recoverPassword:{
+        error: authMsg.recoverPassword ? authMsg.recoverPassword : "잘못된 이메일입니다. 다시 입력하세요.",
+        required:"사용자 계정의 이메일을 입력하세요."
+      },
     },
     spanish:{
       firstName:{
-        required:"Ingresa tu nombre completo"
+        required:"Ingresa tu nombre completo."
       },
       lastName:{
-        required:"Ingresa tu apellido completo"
+        required:"Ingresa tu apellido completo."
       },
       email:{
-        error: authMsg.email ? authMsg.email : "El correo es inválido",
-        required:"Ingrese su correo electrónico"
+        error: authMsg.email ? authMsg.email : "El correo es inválido.",
+        required:"Ingrese su correo electrónico."
       },
       password:{
         error: "La clave debe superar los 8 caractéres.",
-        required:"Ingresa tu contraseña"
-      }
+        required:"Ingresa tu contraseña."
+      },
+      recoverEmail:{
+        error: authMsg.recoverEmail ? authMsg.recoverEmail : "El código de estudiante debe ser 8 dígitos",
+        required:"Ingresa tu código de estudiante."
+      },
+      recoverPassword:{
+        error: authMsg.recoverPassword ? authMsg.recoverPassword : "El correo es inválido.",
+        required:"Ingresa el correo de tu cuenta."
+      },
     }
   }
 
   const schema = (sign) => {
     const msg = validationMessages[language]
-    const {firstName, lastName, email, password} = msg
+    const {firstName, lastName, email, password, recoverEmail, recoverPassword} = msg
     const object = {
       email: Yup.string().email(email.error).required(email.required),
       password: Yup.string().min(8, password.error).required(password.required)
-      } 
-    return sign ? Yup.object().shape(object)
+      }
+    if (openRecoverDialog) {
+      return recoverType === "recoverEmail" 
+      ? Yup.object().shape({recoverEmail: Yup.string().test('len', recoverEmail.error, val => val.length === 8).required(recoverEmail.required)})
+      : Yup.object().shape({recoverPassword: Yup.string().email(recoverPassword.error).required(recoverPassword.required)})
+    }
+    else return sign ? Yup.object().shape(object)
     : Yup.object().shape({
       firstName: Yup.string().required(firstName.required),
       lastName: Yup.string().required(lastName.required),
       ...object,
     })
   }
- 
+
   // react-hooks-form
   const { register, handleSubmit, errors } = useForm({
     // onBlur + onChange after onBlur
@@ -99,7 +132,6 @@ const Account = (props) => {
   });
 
   const onSubmit = (credentials) =>{
-    console.log(errors)
     const submitProps = {
       credentials,
       setAuthMsg,
@@ -176,12 +208,15 @@ const Account = (props) => {
     inputRef: register,
   }
   const inputList = sign ? ["email", "password"] : ["firstName", "lastName", "email", "password"]
+  const recoverProps = {language, errors, setAuthMsg, authMsg, handleRecover, register, openRecoverDialog, setOpenRecoverDialog, recoverType, handleSubmit}
+  const privacyProps = {language, openPrivacyDialog, setOpenPrivacyDialog}
+  const termsProps = {language, openTermsDialog, setOpenTermsDialog}
   return (
     <div className="account">   
       <Paper flex col alignItems="center" justifyContent="center">
         <div className="content">
           <div className="header">
-            <IconBox icon={logo} size={40} iconSize={32}/>
+            <ImageBox image={logo} size={40} iconSize={32}/>
             재콜롬비아한국학교
           </div>
           <div className="title">
@@ -195,7 +230,7 @@ const Account = (props) => {
                 const helperText = errors[inputField] 
                 ? errors[inputField].message
                 : (authMsg[inputField] ? authMsg[inputField] : "")
-                console.log(authMsg)
+                // console.log(authMsg)
                 const fieldProps = {...inputProps, name: inputField, type, label:inputs[inputField], error:helperText !== "", helperText}
                 return (
                   <TextField key={`account-${inputField}`} {...fieldProps}/>  
@@ -214,7 +249,7 @@ const Account = (props) => {
                   <Checkbox
                     checked={showPassword}
                     onChange={handleShowPassword}
-                    name="showPassowrd"
+                    name="showPassword"
                     color="primary"
                   />
                 }
@@ -227,8 +262,8 @@ const Account = (props) => {
                 <Button color="primary" variant="contained" style={{fontSize:14, fontWeight: 700}} type="submit" onClick={()=>console.log(errors)} >{buttons.primary.submit}</Button>
               </div>
               <div className="secondary">
-                <Button size="small" color="primary" style={{boxShadow: 0}} >{buttons.secondary.recoverPassword}</Button>
-                <Button size="small" color="primary" style={{boxShadow: 0}} >{buttons.secondary.recoverEmail}</Button>
+                <Button size="small" color="primary" style={{boxShadow: 0}} onClick={()=>handleRecover("recoverPassword")}>{buttons.secondary.recoverPassword}</Button>
+                <Button size="small" color="primary" style={{boxShadow: 0}} onClick={()=>handleRecover("recoverEmail")}>{buttons.secondary.recoverEmail}</Button>
               </div>
             </div>
           </form>
@@ -237,12 +272,15 @@ const Account = (props) => {
               <Button size="small" color="primary" endIcon={<SwapHorizIcon/>} onClick={handleLanguage}>{buttons.secondary.swapLanguage}</Button>
             </div>
             <div className="footer-end">
-              <Button size="small" color="primary">{footer.privacy}</Button>
-              <Button size="small" color="primary">{footer.terms}</Button>
+              <Button size="small" color="primary" onClick={()=>setOpenPrivacyDialog(true)} >{footer.privacy}</Button>
+              <Button size="small" color="primary" onClick={()=>setOpenTermsDialog(true)} >{footer.terms}</Button>
             </div>
           </div>
         </div>
       </Paper>
+      <Recover {...recoverProps}/>
+      <Privacy {...privacyProps}/>
+      <Terms {...termsProps}/>
     </div>
   )
 }

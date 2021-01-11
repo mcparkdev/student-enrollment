@@ -9,10 +9,11 @@ import "./firebase";
 import useWindowSize from "./WindowDimensions";
 
 // third-parties
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import Account from "./components/account/Account";
 import Button from "@material-ui/core/Button"
+import Admin from "./components/admin/Admin";
 
 
 const theme = createMuiTheme({
@@ -77,9 +78,11 @@ export default function App() {
   const md = ( !sm && width < 1280)
   const lg = ( !md && width < 1920)
   const xl = ( width >= 1920)
-  const viewport= { height, width, xs, sm, md, lg, xl}
-  const nonMobile = xs ? {display:"none"} : {}
-  console.log( {viewport,nonMobile})
+  const phone = ( width <= 320)
+  const tablet = ( !phone && width <= 768)
+  const desktop = ( !tablet && width >= 1024)
+  const viewport= { height, width, xs, sm, md, lg, xl, phone, tablet, desktop}
+  const nonMobile = tablet ? {display:"none"} : {}
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
@@ -87,19 +90,17 @@ export default function App() {
           {isSignedIn && auth ? (
             <>
               {auth.currentUser.uid === "Yhn3f8vAjsVqtGCzNEM0zyPOrQq1" ?
-                <div>
-                관리자
-                <Button variant="contained" color="primary" onClick={()=>auth.signOut()}>로그아웃</Button>
-                  {/* <Redirect to="/management"/>
+                <>
+                  <Redirect to="/database/courses/all"/>
                   <Route
                     path="/"
                     render={({ match, history, location }) => {
-                      const allProps = {router:{match,history,location}, nonMobile, viewport}
+                      const allProps = {router:{match,history,location}, nonMobile, viewport, auth}
                       return (
                       <Admin {...allProps}/>
                     )}}
-                  /> */}
-                </div>
+                  />
+                  </>
                 :
                 <div>
                   학생
