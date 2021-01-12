@@ -6,14 +6,14 @@ const Avatar = (props) => {
   const {badge, status} = props
   return (
     <div className="avatar">
-      <div className={`status ${status}`}>
-        <div className={`content ${type}`}>
+      <div className={`avatar-status ${status}`}>
+        <div className={`avatar-content ${type}`}>
           {props.children}
         </div>
       </div>
       {badge
       &&
-      <div className="badge">
+      <div className="avatar-badge">
         {badge}
       </div>
       }

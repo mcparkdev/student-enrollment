@@ -1,5 +1,17 @@
 @import "../../../../App.scss";
 
+.paper {
+  .filters {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+    .MuiFormControl-root {
+      margin-right: 8px;
+    }
+  }
+}
+
 .table {
   width: 100%;
   display: flex;
@@ -41,10 +53,17 @@
       & .end {
         justify-content: flex-end;
       }
-      & .fixed {
-        // flex: 0;
-        flex: 1 0 50px;
-        max-width: 80px;
+      & .fixed-120 {
+        width: 120px;
+        flex: 0 0 120px;
+      }
+      & .fixed-80 {
+        width: 80px;
+        flex: 0 0 80px;
+      }
+      & .fixed-50 {
+        width: 50px;
+        flex: 0 0 50px;
       }
     }
   }
@@ -54,7 +73,11 @@
     left: -20px;
     font-size: 16px;
     max-height: 400px;
-    overflow-y: scroll;
+    @supports (-webkit-touch-callout: none) {
+      max-height: none;
+    }
+    // -webkit-overflow-scrolling: touch;
+    overflow: overlay;
     .table-row {
       width: calc(100% - 40px);
       padding: 8px 20px;
@@ -73,15 +96,38 @@
         justify-content: center;
 
         .primary {
-          font-weight: 700;
+          margin: 0 0 4px 0;
+          display: -webkit-box;
+          max-height: 16px;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: normal;
+          -webkit-line-clamp: 1;
+          font-size: 16px;
+          font-weight: 500;
+          line-height: 16px;
+          letter-spacing: normal;
         }
         .secondary {
           color: $grey-02;
+          // margin: 0 0 4px 0;
+          display: -webkit-box;
+          max-height: 14px;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: normal;
+          -webkit-line-clamp: 1;
+          font-size: 14px;
+          font-weight: 400;
+          line-height: 14px;
+          letter-spacing: normal;
         }
       }
     }
     & .odd {
-      background-color: $auxilary-color;
+      background-color: $primary-auxiliary-color;
     }
   }
 }

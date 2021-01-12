@@ -1,0 +1,81 @@
+@import "./App.scss";
+html {
+  font-size: 16px;
+  ::-webkit-scrollbar {
+    // position: absolute;
+    z-index: 1000;
+    border-radius: 10px;
+    height: 10px;
+    width: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: $black-da;
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    height: 0;
+    width: 0;
+  }
+  .App {
+    // position: absolute;
+    // top: 0;
+    // right: 0;
+    // bottom: 0;
+    // left: 0;
+    // overflow: hidden;
+  }
+}
+
+ul {
+  margin-block-start: 0px;
+  margin-block-end: 0px;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 0px;
+  li {
+    list-style: none;
+    // padding: 0;
+    // margin: 0;
+  }
+  list-style: none;
+  // padding: 0;
+  // margin: 0;
+}
+
+input {
+  border: none;
+  -webkit-appearance: none;
+  -ms-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline: none;
+  &:focus::placeholder {
+    color: transparent;
+  }
+  // .MuiInputBase-Input {
+  //   font-size: 16px !important;
+  // }
+}
+
+a {
+  text-decoration: none;
+}
+
+// input:-webkit-autofill,
+// input:-webkit-autofill:hover,
+// input:-webkit-autofill:focus,
+// input:-webkit-autofill:active {
+//   font-size: 16px !important;
+//   -webkit-box-shadow: 0 0 0 30px $black-ef inset !important;
+//   box-shadow: 0 0 0 30px $black-ef inset !important;
+// }
+
+// input:-webkit-autofill {
+//   -webkit-text-fill-color: $black-f2 !important;
+// }
+
+// .MuiSelect-icon {
+//   color: $primary-auxiliary-color !important;
+// }

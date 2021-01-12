@@ -2,6 +2,16 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap");
 @import "~include-media/dist/include-media";
 
+$breakpoints: (
+  phone: 420px,
+  tablet: 768px,
+  desktop: 1366px,
+  xs: 600px,
+  sm: 960px,
+  md: 1280px,
+  lg: 1920px,
+);
+
 @mixin shadow($x, $y, $blur, $spread, $r, $g, $b, $opacity) {
   -webkit-box-shadow: $x $y $blur $spread rgba($r, $g, $b, $opacity);
   -moz-box-shadow: $x $y $blur $spread rgba($r, $g, $b, $opacity);
@@ -62,8 +72,10 @@ $light-grey-01: #efefef;
 $light-grey-02: #f5f7f8;
 
 $primary-color: #20416d;
+$secondary-color: #ffc030;
+$secondary-auxiliary-color: #1f2331;
 $primary-color-light: rgba(32, 65, 109, 0.3);
-$auxilary-color: #f3f8ff;
+$primary-auxiliary-color: #f3f8ff;
 $selected-color: #dbebff;
 $border-primary: rgba(126, 155, 255, 0.3);
 %paper-border {
@@ -111,73 +123,6 @@ $border-primary: rgba(126, 155, 255, 0.3);
   font-weight: 300;
 }
 
-html {
-  font-size: 16px;
-  ::-webkit-scrollbar {
-    border-radius: 10px;
-    height: 10px;
-    width: 4px;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: $black-da;
-    border-radius: 10px;
-  }
-
-  ::-webkit-scrollbar-track {
-    height: 0;
-    width: 0;
-  }
-}
-
-ul {
-  margin-block-start: 0px;
-  margin-block-end: 0px;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
-  padding-inline-start: 0px;
-  li {
-    list-style: none;
-    // padding: 0;
-    // margin: 0;
-  }
-  list-style: none;
-  // padding: 0;
-  // margin: 0;
-}
-
-input {
-  border: none;
-  -webkit-appearance: none;
-  -ms-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  outline: none;
-  &:focus::placeholder {
-    color: transparent;
-  }
-  // .MuiInputBase-Input {
-  //   font-size: 16px !important;
-  // }
-}
-
-a {
-  text-decoration: none;
-}
-
-// input:-webkit-autofill,
-// input:-webkit-autofill:hover,
-// input:-webkit-autofill:focus,
-// input:-webkit-autofill:active {
-//   font-size: 16px !important;
-//   -webkit-box-shadow: 0 0 0 30px $black-ef inset !important;
-//   box-shadow: 0 0 0 30px $black-ef inset !important;
-// }
-
-// input:-webkit-autofill {
-//   -webkit-text-fill-color: $black-f2 !important;
-// }
-
-// .MuiSelect-icon {
-//   color: $auxilary-color !important;
-// }
+$navbar-collapsed-width: 73px;
+$sider-width: 481px;
+$navbar-mobile-height: 49px;

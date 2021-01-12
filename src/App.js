@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./App.scss";
+import "./index.scss"
 
 // auth
 import { auth } from "./firebase";
@@ -78,11 +79,11 @@ export default function App() {
   const md = ( !sm && width < 1280)
   const lg = ( !md && width < 1920)
   const xl = ( width >= 1920)
-  const phone = ( width <= 320)
+  const phone = ( width <= 420)
   const tablet = ( !phone && width <= 768)
-  const desktop = ( !tablet && width >= 1024)
+  const desktop = ( !tablet && width >= 1366)
   const viewport= { height, width, xs, sm, md, lg, xl, phone, tablet, desktop}
-  const nonMobile = tablet ? {display:"none"} : {}
+  const nonMobile = (sm || xs) ? {display:"none"} : {}
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
@@ -91,7 +92,7 @@ export default function App() {
             <>
               {auth.currentUser.uid === "Yhn3f8vAjsVqtGCzNEM0zyPOrQq1" ?
                 <>
-                  <Redirect to="/database/courses/all"/>
+                  <Redirect to="/database"/>
                   <Route
                     path="/"
                     render={({ match, history, location }) => {

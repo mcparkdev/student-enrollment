@@ -1,7 +1,7 @@
 @import "../../../../App.scss";
 
 .avatar {
-  .status {
+  .avatar-status {
     @extend %flex-center;
     height: 46px;
     width: 46px;
@@ -13,8 +13,10 @@
       width: 40px;
       border-radius: 50%;
       background: $primary-color;
-      color: $auxilary-color;
+      color: $primary-auxiliary-color;
     }
+  }
+  .avatar-badge {
   }
   & .new {
     border: 2px solid $primary-color;

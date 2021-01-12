@@ -9,7 +9,9 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   select: {
-    minWidth: '120px',
+    display: "flex",
+    flex: 1,
+    // minWidth: '120px',
     backgroundColor: '#20416d !important',
     color: '#f3f8ff',
     fontWeight: 400,
@@ -17,6 +19,7 @@ const useStyles = makeStyles((theme) => ({
     borderWidth: 2,
     borderRadius: "4px !important",
     padding: 10,
+    paddingRight: "40px !important",
     '& .MuiSelect-icon':{
       color: "#f3f8ff",
     },

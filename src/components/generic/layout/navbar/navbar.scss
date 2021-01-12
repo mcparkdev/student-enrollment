@@ -1,10 +1,11 @@
 @import "../../../../App.scss";
 
 .navbar {
+  background-color: $white;
   a {
     text-decoration: none;
   }
-  @include media("<=tablet") {
+  @include media("<=sm") {
     position: fixed;
     left: 0;
     right: 0;
@@ -15,10 +16,11 @@
     justify-content: flex-start;
     align-items: center;
     border-top: 1px solid $grey-01;
-    .start {
+    z-index: 10;
+    .navbar-start {
       width: 100%;
       height: 100%;
-      .item-container {
+      .navbar-item-container {
         width: 100%;
         height: 100%;
         display: flex;
@@ -36,7 +38,7 @@
             color: $primary-color;
             width: 100%;
             height: 100%;
-            .item-bg {
+            .navbar-item-bg {
               width: 100%;
               height: 100%;
               display: flex;
@@ -46,7 +48,7 @@
               .iconBox {
                 height: fit-content !important;
               }
-              .label {
+              .navbar-item-label {
                 font-size: 10px;
               }
             }
@@ -54,11 +56,11 @@
         }
       }
     }
-    .end {
+    .navbar-end {
       display: none;
     }
   }
-  @include media(">tablet") {
+  @include media(">sm") {
     position: fixed;
     left: 0;
     top: 0;
@@ -69,7 +71,7 @@
     align-items: center;
     justify-content: space-between;
     border-right: 1px solid $grey-01;
-    .start {
+    .navbar-start {
       width: 100%;
       display: flex;
       flex: 1 0 auto;
@@ -87,14 +89,16 @@
           cursor: pointer;
         }
       }
-      .item-container {
+      .navbar-item-container {
         width: 100%;
-        .item {
+        .navbar-item {
           width: 100%;
           a {
             color: $primary-color;
             font-size: 10px;
-            .item-bg {
+            width: 100%;
+            height: 100%;
+            .navbar-item-bg {
               width: 100%;
               height: 44px;
               padding: 16px 0 14px 0;
@@ -107,7 +111,7 @@
         }
       }
     }
-    .end {
+    .navbar-end {
       width: 100%;
       display: flex;
       flex: 0 1 auto;

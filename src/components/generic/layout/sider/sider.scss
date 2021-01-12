@@ -1,23 +1,44 @@
 @import "../../../../App.scss";
 
+@supports (-webkit-touch-callout: none) {
+  .sider {
+    bottom: auto !important;
+    padding-bottom: 49px !important;
+    // height: fit-content !important;
+  }
+}
+
 .sider {
-  position: fixed;
-  @include media("<=tablet") {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  // max-height: 100vh;
+  overflow: overlay;
+  -webkit-overflow-scrolling: touch;
+
+  z-index: 1;
+  @include media("<=sm") {
+    padding: 20px;
     left: 0;
     right: 0;
     top: 0;
-    bottom: 48px;
+    bottom: $navbar-mobile-height;
   }
-  @include media(">tablet") {
-    left: 72px;
+  @include media(">sm") {
+    padding: 20px;
+    left: $navbar-collapsed-width;
     top: 0;
     bottom: 0;
     width: 440px;
-    overflow-y: scroll;
-    padding: 20px;
     border-right: 1px solid $grey-01;
   }
-  .header {
+  .sider-header {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex: 0;
     margin-bottom: 20px;
     .last-update {
       font-weight: 400;
@@ -30,6 +51,38 @@
       }
     }
   }
+  .sider-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex: 0 1 auto;
+    margin-bottom: 20px;
+  }
+  .sider-footer {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    margin-bottom: 20px;
+    justify-content: flex-end;
+    align-items: center;
+    .primary {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-bottom: 8px;
+      margin-bottom: 8px;
+      border-bottom: 1px solid $grey-02;
+      font-size: 16px;
+      font-weight: 500;
+      color: $black-01;
+    }
+    .secondary {
+      width: 100%;
+      font-size: 12px;
+      font-weight: 300;
+    }
+  }
   .sider-bg {
     position: absolute;
     z-index: -1;
@@ -37,15 +90,16 @@
     left: 20px;
     right: 20px;
     bottom: 20px;
-    // height: 100vh;
-    width: 440px;
-    @include media("<=tablet") {
-      width: 100 vw;
+    @include media(">sm") {
+      width: 440px;
+    }
+    @include media("<=sm") {
+      // width: calc(100vw - 40px);
     }
     background: url("../../../../media/logo.png");
     background-size: contain;
-    // background-position: 50% 50%;
-    background-repeat: no-repeat;
-    opacity: 0.1;
+    background-position: 50% 10%;
+    // background-repeat: no-repeat;
+    opacity: 0.07;
   }
 }

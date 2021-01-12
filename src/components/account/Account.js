@@ -92,7 +92,7 @@ const Account = (props) => {
         required:"Ingresa tu contraseña."
       },
       recoverEmail:{
-        error: authMsg.recoverEmail ? authMsg.recoverEmail : "El código de estudiante debe ser 8 dígitos",
+        error: authMsg.recoverEmail ? authMsg.recoverEmail : "El código de estudiante son 8 dígitos",
         required:"Ingresa tu código de estudiante."
       },
       recoverPassword:{
@@ -214,17 +214,17 @@ const Account = (props) => {
   return (
     <div className="account">   
       <Paper flex col alignItems="center" justifyContent="center">
-        <div className="content">
-          <div className="header">
+        <div className="account-content">
+          <div className="account-header">
             <ImageBox image={logo} size={40} iconSize={32}/>
             재콜롬비아한국학교
           </div>
-          <div className="title">
+          <div className="account-title">
             <div className="title">{title.title}</div>
             <div className="subtitle">{title.subtitle}</div>
           </div>
           <form onSubmit={handleSubmit(onSubmit)} noValidate>
-            <div className="inputs">
+            <div className="account-inputs">
               {inputList.map(inputField => {
                 const type = inputField === "email" ? "email" : (inputField === "password" ? (!showPassword ? "password" : "") : "")
                 const helperText = errors[inputField] 
@@ -256,22 +256,22 @@ const Account = (props) => {
                 label={inputs.showPassword}
               />
             </div>
-            <div className="buttons">
-              <div className="primary">
+            <div className="account-button-container">
+              <div className="account-button-primary">
                 <Button color="primary" onClick={handleSign}>{buttons.primary.swapSign}</Button>
                 <Button color="primary" variant="contained" style={{fontSize:14, fontWeight: 700}} type="submit" onClick={()=>console.log(errors)} >{buttons.primary.submit}</Button>
               </div>
-              <div className="secondary">
+              <div className="account-button-secondary">
                 <Button size="small" color="primary" style={{boxShadow: 0}} onClick={()=>handleRecover("recoverPassword")}>{buttons.secondary.recoverPassword}</Button>
                 <Button size="small" color="primary" style={{boxShadow: 0}} onClick={()=>handleRecover("recoverEmail")}>{buttons.secondary.recoverEmail}</Button>
               </div>
             </div>
           </form>
-          <div className="footer">
-            <div className="footer-start">
+          <div className="account-footer">
+            <div className="account-footer-start">
               <Button size="small" color="primary" endIcon={<SwapHorizIcon/>} onClick={handleLanguage}>{buttons.secondary.swapLanguage}</Button>
             </div>
-            <div className="footer-end">
+            <div className="account-footer-end">
               <Button size="small" color="primary" onClick={()=>setOpenPrivacyDialog(true)} >{footer.privacy}</Button>
               <Button size="small" color="primary" onClick={()=>setOpenTermsDialog(true)} >{footer.terms}</Button>
             </div>

@@ -6,7 +6,7 @@ import Tabs from "../../navigation/tabs/Tabs"
 const Table = (props) => {
   const {tabProps, table, setTableRowKey} = props
   const {className, header, body} = table
-  console.log(body)
+  // console.log(body)
   return (
     <div className="table">
       <Tabs {...tabProps} />
@@ -25,7 +25,7 @@ const Table = (props) => {
               {row.map((cell, cellIndex)=>{
                 const double = Array.isArray(cell)
                 return(
-                <div className={`table-cell ${className[cellIndex]}`}>
+                <div className={`table-cell ${className[cellIndex]}`} key={`table-cell-${index}-${cellIndex}-${double ? cell[0] : cell}`} >
                   {double
                   ? (
                     <>

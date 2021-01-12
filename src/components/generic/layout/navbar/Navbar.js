@@ -9,21 +9,21 @@ import Button from "@material-ui/core/Button"
 
 const Navbar = (props) => {
   const {items, itemKey, setItemKey} = props
-  // console.log(items)
+  console.log(props)
   return (
     <div className="navbar">
-      <div className="start">
+      <div className="navbar-start">
         <ImageBox image={logo} size={48} iconSize={40} style={props.nonMobile}/>
-        <div className="item-container">
+        <div className="navbar-item-container">
           {items.map((item, index)=>{
             const {icon, name, label} = item
             const selected = index === itemKey
             return (
-              <Button key={`navbar-${name}`} className="item" style={{padding:0, opacity: selected ? 1 : 0.5}} color="primary" onClick={()=>setItemKey(index)}>
+              <Button key={`navbar-${name}`} className="navbar-item" style={{padding:0, opacity: selected ? 1 : 0.5}} color="primary" onClick={()=>setItemKey(index)}>
                 <NavLink to={`/${name}`}>
-                  <div className="item-bg">
+                  <div className="navbar-item-bg">
                     <IconBox icon={icon}/>
-                    <div className="label">
+                    <div className="navbar-item-label">
                       {label}
                     </div>
                   </div>
@@ -33,7 +33,7 @@ const Navbar = (props) => {
           })}
         </div>
       </div>
-      <div className="end">
+      <div className="navbar-end">
         Footer
       </div>
     </div>

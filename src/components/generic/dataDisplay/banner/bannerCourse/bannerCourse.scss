@@ -1,0 +1,119 @@
+@import "../../../../../App.scss";
+
+.banner-course {
+  .banner-header {
+    @extend %flex-center;
+    align-items: flex-end;
+    width: 100%;
+    .banner-title {
+      flex: 0 0 auto;
+      font-size: 48px;
+      font-weight: 600;
+      color: $primary-color;
+      border-bottom: 2px solid $secondary-color;
+      padding: 0 20px;
+    }
+    .banner-tabs {
+      flex: 1;
+    }
+  }
+  .banner-content {
+    width: 100%;
+    color: $primary-auxiliary-color;
+    background: $secondary-auxiliary-color;
+    min-height: 50px;
+    .name {
+      color: $secondary-color;
+    }
+    .main-content,
+    .more-content {
+      padding: 20px;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+    }
+    .main-content {
+      min-height: 50px;
+      // margin-bottom: 10px;
+      border-bottom: 1px solid $secondary-color;
+    }
+    .more-content {
+      .banner-container {
+        padding: 20px 0;
+        border-bottom: 0.5px solid $secondary-color;
+        &:nth-last-child(2) {
+          border-bottom: 0;
+        }
+      }
+    }
+    .content-start {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      flex: 0 auto;
+      margin-right: 10px; // flex-direction
+      .show-more-less {
+        margin-top: 10px;
+      }
+      .banner-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        .banner-item-container {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: center;
+          width: 200px;
+          .banner-item {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: center;
+            margin-right: 16px;
+          }
+          .main {
+            // flex-direction: column-reverse;
+            align-items: center;
+            margin-right: 32px;
+            .label {
+              font-size: 32px;
+              font-weight: 400;
+            }
+          }
+        }
+        .banner-progress {
+          .bar-container {
+            display: flex;
+            flex-flow: row wrap;
+            max-width: 200px;
+            justify-content: flex-start;
+            align-items: center;
+            .bar {
+              height: 10px;
+              width: 10px;
+              margin: 4px 8px 4px 0;
+              border: 1px solid $secondary-color;
+            }
+            & .checked {
+              background-color: $secondary-color;
+            }
+          }
+        }
+      }
+    }
+    .content-end {
+      flex: 1;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid $secondary-color;
+      height: 100%;
+    }
+    // height: 200px;
+  }
+}

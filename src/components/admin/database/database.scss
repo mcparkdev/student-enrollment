@@ -1,17 +1,1 @@
 @import "../../../App.scss";
-
-.database {
-  .content {
-    .paper {
-      .filters {
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: flex-start;
-        margin-bottom: 20px;
-        .MuiFormControl-root {
-          margin-right: 8px;
-        }
-      }
-    }
-  }
-}
