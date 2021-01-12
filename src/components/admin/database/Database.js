@@ -322,7 +322,7 @@ const Database = (props) => {
   const contentTableTabProps = {
     items: contentTableTabItems(contentTabKey),
     itemKey: contentTableTabKey,
-    setItemKey: handleContentTabKey,
+    setItemKey: handleContentTableTabKey,
     ghost: true,
     variant: "outlined"
   }
