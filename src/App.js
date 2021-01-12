@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./App.scss";
-import "./index.scss"
+// import "./index.scss"
 
 // auth
 import { auth } from "./firebase";

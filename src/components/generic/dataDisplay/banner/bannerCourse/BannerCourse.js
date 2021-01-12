@@ -44,7 +44,7 @@ const BannerCourse = (props) => {
           </div>
           <div className="content-end">
             <div className="chart">
-              {main.start.end}
+              {main.end}
             </div>
           </div>
         </div>

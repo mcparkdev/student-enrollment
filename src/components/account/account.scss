@@ -54,13 +54,13 @@
       .title {
         margin: 0;
         color: $primary-color;
-        @extend %fs-32;
-        @extend %bold;
+        font-size: 32px;
+        font-weight: 700;
       }
       .subtitle {
         margin: 0;
-        @extend %fs-14;
-        @extend %regular;
+        font-size: 14px;
+        font-weight: 400;
       }
     }
     .account-inputs {
