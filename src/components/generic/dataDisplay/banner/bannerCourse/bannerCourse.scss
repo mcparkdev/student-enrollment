@@ -16,6 +16,16 @@
     .banner-tabs {
       flex: 1;
     }
+    @include media("<=md") {
+      flex-direction: column;
+      align-items: flex-start;
+      .banner-title {
+        border: 0;
+      }
+      .banner-tabs {
+        width: 100%;
+      }
+    }
   }
   .banner-content {
     width: 100%;
@@ -32,13 +42,51 @@
       flex-direction: row;
       justify-content: flex-start;
       align-items: center;
+      @include media(">xs", "<=md") {
+        flex-direction: column;
+        .content-start {
+          align-items: center;
+          margin: 0 0 20px 0;
+          width: 100%;
+          .banner-container {
+            width: auto;
+          }
+        }
+      }
+      @include media("<=xs") {
+        flex-direction: column;
+        .content-start {
+          align-items: center;
+          margin: 0 0 20px 0;
+          width: 100%;
+          .banner-container {
+            flex-direction: column !important;
+            width: 100%;
+            .banner-item-container {
+              margin-bottom: 10px;
+            }
+          }
+        }
+      }
     }
     .main-content {
       min-height: 50px;
       // margin-bottom: 10px;
-      border-bottom: 1px solid $secondary-color;
     }
     .more-content {
+      border-top: 1px solid $secondary-color;
+      // opacity: 0.5;
+      &.hidden {
+        padding-top: 0;
+        border: 0;
+        .content-start {
+          margin: 0;
+          .show-more-less {
+            margin: 0;
+          }
+        }
+        // padding: 0;
+      }
       .banner-container {
         padding: 20px 0;
         border-bottom: 0.5px solid $secondary-color;
@@ -53,15 +101,16 @@
       justify-content: center;
       align-items: flex-start;
       flex: 0 auto;
-      margin-right: 10px; // flex-direction
+      margin-right: 20px;
       .show-more-less {
-        margin-top: 10px;
+        margin-top: 20px;
       }
       .banner-container {
         display: flex;
         flex-direction: row;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-start;
+        width: 100%;
         .banner-item-container {
           display: flex;
           flex-direction: row;
@@ -89,7 +138,7 @@
           .bar-container {
             display: flex;
             flex-flow: row wrap;
-            max-width: 200px;
+            width: 200px;
             justify-content: flex-start;
             align-items: center;
             .bar {
@@ -106,13 +155,24 @@
       }
     }
     .content-end {
+      .content-chart {
+        width: 100%;
+        height: 100%;
+        border: 1px solid $secondary-color;
+        @extend %flex-center;
+      }
       flex: 1;
+      height: 100%;
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      border: 1px solid $secondary-color;
-      height: 100%;
+      @include media("<=md") {
+        width: 100%;
+        .content-chart {
+          margin-bottom: 10px;
+        }
+      }
     }
     // height: 200px;
   }

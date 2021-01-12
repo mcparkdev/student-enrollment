@@ -4,12 +4,16 @@ import React from 'react'
 import "./content.scss"
 
 const Content = (props) => {
-  const {className} = props
+  const {className, show} = props
   return (
-    <div className={`content ${className ? className : ""}`}>
-      {props.children}
-      <div className="content-bg"/>
-    </div>
+    <>
+      {show !== false &&
+      <div className={`content ${className ? className : ""}`}>
+        {props.children}
+        <div className="content-bg"/>
+      </div>
+      }
+    </>
   )
 }
 

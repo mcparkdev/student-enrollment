@@ -2,10 +2,11 @@ import React from 'react'
 import "./table.scss"
 // import Button from '@material-ui/core/Button'
 import Tabs from "../../navigation/tabs/Tabs"
+import { NavLink } from 'react-router-dom'
 
 const Table = (props) => {
   const {tabProps, table, setTableRowKey} = props
-  const {className, header, body} = table
+  const {className, header, body, links} = table
   // console.log(body)
   return (
     <div className="table">
@@ -20,8 +21,9 @@ const Table = (props) => {
       <div className="table-body">
         {body.map((row, index)=>{
           const rowClass = index%2 === 0 ? 'table-row odd' : 'table-row'
+          const to = !!links ? links[index] : props.router.location.pathname
           return (
-            <div className={rowClass} key={`table-row ${index}`} onClick={()=>setTableRowKey(index)}>
+            <NavLink to={to} className={rowClass} key={`table-row ${index}`} onClick={()=>setTableRowKey(index)}>
               {row.map((cell, cellIndex)=>{
                 const double = Array.isArray(cell)
                 return(
@@ -37,7 +39,7 @@ const Table = (props) => {
                   }
                 </div>
               )})}
-            </div>
+            </NavLink>
           )
         })}
         {/* <div className="table-row">

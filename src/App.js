@@ -74,16 +74,12 @@ export default function App() {
     });
   }, []);
   const { height, width } = useWindowSize();
-  const xs = ( width < 600)
-  const sm = ( !xs && width < 960)
-  const md = ( !sm && width < 1280)
-  const lg = ( !md && width < 1920)
-  const xl = ( width >= 1920)
-  const phone = ( width <= 420)
-  const tablet = ( !phone && width <= 768)
-  const desktop = ( !tablet && width >= 1366)
-  const viewport= { height, width, xs, sm, md, lg, xl, phone, tablet, desktop}
-  const nonMobile = (sm || xs) ? {display:"none"} : {}
+  const xs = 600
+  const sm = 960
+  const md = 1280
+  const lg = 1920
+  const isMobile = width < sm
+  const viewport= { height, width, xs, sm, md, lg}
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
@@ -96,7 +92,7 @@ export default function App() {
                   <Route
                     path="/"
                     render={({ match, history, location }) => {
-                      const allProps = {router:{match,history,location}, nonMobile, viewport, auth}
+                      const allProps = {router:{match,history,location}, isMobile, viewport, auth}
                       return (
                       <Admin {...allProps}/>
                     )}}

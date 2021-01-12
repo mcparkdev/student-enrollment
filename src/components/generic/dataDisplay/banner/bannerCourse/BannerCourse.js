@@ -1,10 +1,15 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Tabs from '../../../navigation/tabs/Tabs'
 import "./bannerCourse.scss"
 import Button from '@material-ui/core/Button'
 const BannerCourse = (props) => {
-  const {tabProps, title, main, more} = props
-  
+  const {tabProps, title, main, more, viewport} = props
+  const isDesktop = viewport.width > 1280
+  const [showMore, setShowMore] = useState(false)
+  const handleShowMore = () => {
+    setShowMore(!showMore)
+  }
+  const showMoreMsg = showMore ? "간략히" : "자세히"
   return (
     <div className="banner banner-course">
       <div className="banner-header">
@@ -43,14 +48,15 @@ const BannerCourse = (props) => {
             </div>
           </div>
           <div className="content-end">
-            <div className="chart">
+            <div className="content-chart">
               {main.end}
             </div>
           </div>
         </div>
-        <div className="more-content">
+        <div className={`more-content ${showMore ? "" : "hidden"}`}>
           <div className="content-start">
-              {more.start.map((moreItem,index)=>{
+              
+              {showMore && more.start.map((moreItem,index)=>{
                 const {names, labels, progress} = moreItem
                 return(
                   <div className="banner-container" key={`more-content ${index}`}>
@@ -78,68 +84,25 @@ const BannerCourse = (props) => {
                   </div>
                 )
               })}
-            {/* <div className="banner-container">
-              <div className="banner-item-container">
-                <div className="banner-item">
-                  <div className="name">담임</div>
-                  <div className="label">박민창</div>
-                </div>
-                <div className="banner-item">
-                  <div className="name">학생</div>
-                  <div className="label">9명</div>
-                </div>
-                <div className="banner-item">
-                  <div className="name">납부현황</div>
-                  <div className="label">70%</div>
-                </div>
+            {isDesktop &&
+              <div className="show-more-less">
+                <Button onClick={handleShowMore} color="secondary">{showMoreMsg}</Button>
               </div>
-              <div className="banner-progress">
-                <div className="bar-container">
-                  {[1,1,1,1,1,1,1,0,0,0].map((item,index)=>{
-                    const status = item === 1 ? "checked" : "unchecked"
-                    return(
-                      <div key={`${status}-${Math.random()}`} className={`bar ${status}`}/>
-                    )
-                  })}
-                </div>
-              </div>
-            </div>
-            <div className="banner-container">
-              <div className="banner-item-container">
-                <div className="banner-item">
-                  <div className="name">담임</div>
-                  <div className="label">박민창</div>
-                </div>
-                <div className="banner-item">
-                  <div className="name">학생</div>
-                  <div className="label">9명</div>
-                </div>
-                <div className="banner-item">
-                  <div className="name">납부현황</div>
-                  <div className="label">70%</div>
-                </div>
-              </div>
-              <div className="banner-progress">
-                <div className="bar-container">
-                  {[1,1,1,1,1,1,1,0,0,0].map((item,index)=>{
-                    const status = item === 1 ? "checked" : "unchecked"
-                    return(
-                      <div key={`${status}-${Math.random()}`} className={`bar ${status}`}/>
-                    )
-                  })}
-                </div>
-              </div>
-            </div> */}
-            <div className="show-more-less">
-              <Button color="secondary">간략히</Button>
-            </div>
+            }
           </div>
           <div className="content-end">
-            <div className="chart">
-              {more.end}
-            </div>
+            {showMore &&
+              <div className="content-chart">
+                {more.end}
+              </div>
+            }
+            {!isDesktop &&
+              <div className="show-more-less">
+                <Button onClick={handleShowMore} color="secondary">{showMoreMsg}</Button>
+              </div>
+            }
           </div>
-        </div>
+        </div>  
       </div>
     </div>
   )

@@ -8,12 +8,12 @@ import { NavLink } from 'react-router-dom'
 import Button from "@material-ui/core/Button"
 
 const Navbar = (props) => {
-  const {items, itemKey, setItemKey} = props
-  console.log(props)
+  const {items, itemKey, setItemKey, isMobile} = props
+  console.log(isMobile)
   return (
     <div className="navbar">
       <div className="navbar-start">
-        <ImageBox image={logo} size={48} iconSize={40} style={props.nonMobile}/>
+        {!isMobile && <ImageBox image={logo} size={48} iconSize={40}/>}        
         <div className="navbar-item-container">
           {items.map((item, index)=>{
             const {icon, name, label} = item

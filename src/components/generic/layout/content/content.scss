@@ -1,23 +1,36 @@
 @import "../../../../App.scss";
 
 .content {
-  position: fixed;
+  position: absolute;
   top: 0;
   right: 0;
   z-index: 9;
-  overflow: overlay;
   padding: 20px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  overflow: overlay;
   @include media("<=sm") {
     bottom: 49px;
     left: 0;
+    @supports (-webkit-touch-callout: none) {
+      bottom: auto;
+      padding-bottom: 69px;
+    }
   }
   @include media(">sm") {
     bottom: 0;
     left: calc(#{$navbar-collapsed-width} + #{$sider-width});
   }
-  background: $primary-auxiliary-color;
+  background-color: $primary-auxiliary-color;
+  .content-content {
+    width: 100%;
+    max-width: 840px;
+  }
+  .content-close {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+  }
 }
