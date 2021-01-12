@@ -440,7 +440,7 @@ const Database = (props) => {
   
   // TOTAL PROPS
   const databaseSiderProps = {...props, searchProps, siderTabProps, siderPaperTableProps}
-  const databaseContentProps = {...props, bannerProps, contentTabProps, showContentProps}
+  const databaseContentProps = {...props, bannerProps, contentTabProps, showContentProps, contentPaperTableProps}
   return (
     <>
     <DatabaseSider {...databaseSiderProps} />
