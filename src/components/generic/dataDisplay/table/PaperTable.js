@@ -9,6 +9,7 @@ import Table from './Table'
 
 const PaperTable = (props) => {
   const {title, subtitle, footer, selectProps, tableProps} = props
+  // console.log(tableProps)
   const opacity = props.opacity ? props.opacity : 0.95
   return (
     <Paper opacity={opacity}>
@@ -16,9 +17,9 @@ const PaperTable = (props) => {
       <PaperSubTitle>{subtitle}</PaperSubTitle>
       {props.children}
       <div className="filters">
-        {selectProps.map((itemProps,index)=><Select key={`${Math.round(Math.random()*100000)}`} {...itemProps} />)}
+        {!!selectProps && selectProps.map((itemProps,index)=><Select key={`${Math.round(Math.random()*100000)}`} {...itemProps} />)}
       </div>
-      <Table {...tableProps}/>
+      <Table router={props.router} {...tableProps}/>
       {footer}
     </Paper>
   )

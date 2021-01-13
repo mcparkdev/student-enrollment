@@ -10,6 +10,7 @@ const BannerCourse = (props) => {
     setShowMore(!showMore)
   }
   const showMoreMsg = showMore ? "간략히" : "자세히"
+  console.log(props)
   return (
     <div className="banner banner-course">
       <div className="banner-header">

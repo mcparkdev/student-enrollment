@@ -81,6 +81,11 @@
           flex: 0 0 120px;
         }
       }
+      & .md {
+        @include media("<=md") {
+          display: none;
+        }
+      }
     }
   }
   .table-body {
@@ -100,7 +105,7 @@
       height: 48px;
       &:hover {
         background-color: $selected-color;
-        cursor: pointer;
+        // cursor: pointer;
       }
       .table-cell {
         height: 48px;
@@ -111,10 +116,10 @@
         align-items: flex-start;
         justify-content: center;
 
-        .primary {
+        & .primary {
           margin: 0 0 4px 0;
           display: -webkit-box;
-          max-height: 16px;
+          height: 18px;
           -webkit-box-orient: vertical;
           overflow: hidden;
           text-overflow: ellipsis;
@@ -124,12 +129,16 @@
           font-weight: 500;
           line-height: 16px;
           letter-spacing: normal;
+          a {
+            // width: 100%;
+            color: $black-01;
+          }
         }
         .secondary {
           color: $grey-02;
           // margin: 0 0 4px 0;
           display: -webkit-box;
-          max-height: 14px;
+          height: 16px;
           -webkit-box-orient: vertical;
           overflow: hidden;
           text-overflow: ellipsis;

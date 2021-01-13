@@ -5,7 +5,7 @@ import Tabs from "../../navigation/tabs/Tabs"
 import { NavLink } from 'react-router-dom'
 
 const Table = (props) => {
-  const {tabProps, table, setTableRowKey} = props
+  const {tabProps, table, handleTableRowKey} = props
   const {className, header, body, links} = table
   // console.log(body)
   return (
@@ -23,43 +23,48 @@ const Table = (props) => {
           const rowClass = index%2 === 0 ? 'table-row odd' : 'table-row'
           const to = !!links ? links[index] : props.router.location.pathname
           return (
-            <NavLink to={to} className={rowClass} key={`table-row ${index}`} onClick={()=>setTableRowKey(index)}>
-              {row.map((cell, cellIndex)=>{
-                const double = Array.isArray(cell)
-                return(
-                <div className={`table-cell ${className[cellIndex]}`} key={`table-cell-${index}-${cellIndex}-${double ? cell[0] : cell}`} >
-                  {double
-                  ? (
-                    <>
-                      <div className="primary">{cell[0]}</div>
-                      <div className="secondary">{cell[1]}</div>
-                    </>
-                  )
-                  : <>{cell} </>
-                  }
-                </div>
-              )})}
-            </NavLink>
+            <React.Fragment key={`table-row ${index}-${Math.round(Math.random()*100000)}`} >
+            {!!links 
+            ?
+              <NavLink to={to} className={rowClass} onClick={()=>handleTableRowKey(index)}>
+                {row.map((cell, cellIndex)=>{
+                  const double = Array.isArray(cell)
+                  return(
+                  <div className={`table-cell ${className[cellIndex]}`} key={`table-cell-${index}-${cellIndex}-${double ? cell[0] : cell}`} >
+                    {double
+                    ? (
+                      <>
+                        <div className="primary">{cell[0]}</div>
+                        <div className="secondary">{cell[1]}</div>
+                      </>
+                    )
+                    : <>{cell} </>
+                    }
+                  </div>
+                )})}
+              </NavLink>
+              :
+              <div className={rowClass} onClick={()=>handleTableRowKey(index)}>
+                {row.map((cell, cellIndex)=>{
+                  const double = Array.isArray(cell)
+                  return(
+                  <div className={`table-cell ${className[cellIndex]}`} key={`table-cell-${index}-${cellIndex}-${double ? cell[0] : cell}`} >
+                    {double
+                    ? (
+                      <>
+                        <div className="primary">{cell[0]}</div>
+                        <div className="secondary">{cell[1]}</div>
+                      </>
+                    )
+                    : <>{cell} </>
+                    }
+                  </div>
+                )})}
+              </div>
+            }
+            </React.Fragment>
           )
         })}
-        {/* <div className="table-row">
-          <div className="table-cell center fixed">1</div>
-          <div className="table-cell flex start double">
-            <div className="primary">초급 1-1</div>
-            <div className="secondary">박민창</div>
-          </div>
-          <div className="table-cell end">88.89%</div>
-          <div className="table-cell end">9 명</div>
-        </div>
-        <div className="table-row">
-          <div className="table-cell center fixed">1</div>
-          <div className="table-cell flex start double">
-            <div className="primary">초급 1-1</div>
-            <div className="secondary">박민창</div>
-          </div>
-          <div className="table-cell end">88.89%</div>
-          <div className="table-cell end">9 명</div>
-        </div> */}
       </div>
     </div>
   )
