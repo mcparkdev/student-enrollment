@@ -30,7 +30,7 @@ const Paper = (props) => {
     marginBottom: marginBottom ? marginBottom : "",
     marginLeft: marginLeft ? marginLeft : "",
   }
-  console.log(style)
+  // console.log(style)
   return (
     <div className="paper" style={style}>
       {props.children}

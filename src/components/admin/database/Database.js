@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import "./database.scss"
 
 import DatabaseContent from './DatabaseContent'
@@ -19,7 +19,11 @@ const Database = (props) => {
   const toggleShowContent = () =>{
     setShowContent(!showContent)
   }
-  
+  const currentPathNameLength = props.router.location.pathname.split("/").length
+  useEffect(()=>{
+    if (currentPathNameLength <= 2) setShowContent(false)
+  },[currentPathNameLength])
+
   // SIDER - Search state
   const [searchKey, setSearchKey] = useState("")
   const handleSearchKey = (value) => {
@@ -103,7 +107,7 @@ const Database = (props) => {
   // TOTAL PROPS
   const databaseSiderProps = {...props, courseNames, courseLabels, searchProps, period, schedule, handlePeriod, handleSchedule, periodItems, scheduleItems, handleSiderTableRowKey, handleSiderTableTabKey, handleSiderTabKey, siderTabKey, siderTableTabKey, siderTableRowKey}
   const databaseContentProps = {...props, siderTabNames, courseNames, courseLabels, siderTableLastSelectedRow, showContentProps, handleContentTableRowKey, handleContentTableTabKey, handleContentTabKey, contentTabKey, contentTableTabKey, contentTableRowKey, bannerTabKey, handleBannerTabKey}
-  const showSider = !(props.isMobile && showContent)
+  const showSider = !(props.isMobile && showContent )
   return (
     <>
     {showSider && <DatabaseSider {...databaseSiderProps} /> }
