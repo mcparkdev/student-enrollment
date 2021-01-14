@@ -88,7 +88,7 @@ export default function App() {
         <Router>
           {isSignedIn && auth ? (
             <>
-              {auth.currentUser.refreshToken === "AOvuKvQk-PfkF_2ZGjuMBsId19gL5a7bNlUjjhQdw1jKGippNX9W8N83-HXOaLqMhitDaCCj8s0QSvNWZkBrUBfUHl_mg-EfLOQGipMjwkIoft7ct6Z4i2lkTI3dbwsMAus77bI952r8_D-90Kkc2uIRF0895KPs_I0y_wLK2xNiPjbadfKuSVHWTNekf1Bd868dhM_9y9UjVICL2rqrXZwljuJ0AHAff7i2isIs6Q3J-rCa_OX7Qck" ?
+              {auth.currentUser.email ==="mc.park@uniandes.edu.co" ?
                 <>
                   <Redirect to="/database"/>
                   <Route path="/" render={router => <Admin {...appProps} router={router}/> } />
