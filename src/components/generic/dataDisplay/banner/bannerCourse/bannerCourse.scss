@@ -1,6 +1,10 @@
 @import "../../../../../App.scss";
 
 .banner-course {
+  flex-direction: column;
+  width: 100%;
+  // max-width: 840px;
+  margin-bottom: 20px;
   .banner-header {
     @extend %flex-center;
     align-items: flex-end;
@@ -61,7 +65,8 @@
           width: 100%;
           .banner-container {
             flex-direction: column !important;
-            width: 100%;
+            width: auto;
+            padding: 20px 10px;
             .banner-item-container {
               margin-bottom: 10px;
             }
@@ -90,8 +95,10 @@
       .banner-container {
         padding: 20px 0;
         border-bottom: 0.5px solid $secondary-color;
-        &:nth-last-child(2) {
-          border-bottom: 0;
+        @include media(">=md") {
+          &:nth-last-child(2) {
+            border-bottom: 0;
+          }
         }
       }
     }

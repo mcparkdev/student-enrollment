@@ -47,9 +47,8 @@ const addLevels = (nameList) => (
 const courseNames = addLevels(["beginner","intermediate","advanced"])
 const courseLabels = addLevels(["초급","중급","고급"])
 const courseStatus = addTotalList([["new", "new", "", "", "", "new", ], ["new", "new", "new", "new", "", "",], ["new", "new", "", "", "", "new", ]])
-
+const courseIDs = addTotalList([[0,1,2,3,4,5],[6,7,8,9,10,11],[12,13,14,15,16,17]])
 // Temporary student names. Got to change to firebase stored data
-
 const studentNames = ["Valentina Sofia Casadiego Reyes", "Min Chang Park", "Min Chang Park", "Min Seo Park", "Min Seo Park", "Min Seo Park","Min Gyu Park", "Min Gyu Park", "Min Gyu Park"]
 const studentIDs = ["201631807", "201631807", "201631807", "202149352", "202149352", "202149352", "201439402", "201439402", "201439402"]
 const studentCourses = [0, 0, 1, 1, 2, 2, 0, 1, 2]
@@ -58,8 +57,7 @@ const studentStatus = ["new", "new", "", "new", "new", "", "new", "new", "new", 
 
 
 // Student data organized for tabling
-
-const studentTable = ["total","beginner", "intermediate","advanced","unmatched"].map((tabName,index)=>{
+const studentTable = ["total","beginner", "intermediate","advanced","unpayed"].map((tabName,index)=>{
   if (index === 0) {
     return studentNames.map((name,index)=>{
       const studentID = studentIDs[index]
@@ -75,7 +73,7 @@ const studentTable = ["total","beginner", "intermediate","advanced","unmatched"]
   }
   else {
     return studentCourses.map((studentCourse,studentIndex)=>{
-      if (index === 4) return !studentPayed[studentIndex] ? studentIndex : null
+      if (tabName === "unpayed") return !studentPayed[studentIndex] ? studentIndex : null
       else return index - 1 === studentCourse ? studentIndex : null
     }).filter((item)=> {
       // console.log(index, studentNames[item], item)
@@ -141,9 +139,12 @@ const siderTable = (siderTabKey, siderTableTabKey) => (
       const status = courseStatus[siderTableTabKey][index]
       return [<Avatar status={status}>{label[0]}</Avatar>, label, "90%", "10명"]
     }),
-    links: courseNames[siderTableTabKey].map((name,index)=>{
-      return `/database/courses/${index}`
-    })
+    links: courseIDs[siderTableTabKey].map((name,index)=>{
+      return `/database/courses/${name}`
+    }),
+    params:courseIDs[siderTableTabKey].map(name=>{
+      return {courseID:name}
+    }),
   }
   : ( siderTabKey === 1 
     ? {
@@ -153,7 +154,11 @@ const siderTable = (siderTabKey, siderTableTabKey) => (
       links: studentTable[siderTableTabKey].map((student)=>{
         const name = student[1][1]
         return `/database/students/${name}`
-      })
+      }),
+      params:studentTable[siderTableTabKey].map((student)=>{
+        const name = student[1][1]
+        return {id:name}
+      }),
     }
     : {
       className:["center fixed-80", "flex start", "center fixed-60", "center fixed-60"],

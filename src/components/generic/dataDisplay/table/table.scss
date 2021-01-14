@@ -81,6 +81,12 @@
           flex: 0 0 120px;
         }
       }
+      & .fixed-60-90 {
+        flex: 0 0 60px;
+        @include media(">xs") {
+          flex: 0 0 90px;
+        }
+      }
       & .md {
         @include media("<=md") {
           display: none;
@@ -119,7 +125,7 @@
         & .primary {
           margin: 0 0 4px 0;
           display: -webkit-box;
-          height: 18px;
+          height: 17px;
           -webkit-box-orient: vertical;
           overflow: hidden;
           text-overflow: ellipsis;
@@ -132,6 +138,9 @@
           a {
             // width: 100%;
             color: $black-01;
+            &:hover {
+              text-decoration: underline;
+            }
           }
         }
         .secondary {

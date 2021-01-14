@@ -42,20 +42,8 @@ const Admin = (props) => {
     <>
     <Navbar {...itemProps} />
     <Switch>
-      <Route
-        path={`/database`}
-        render={({ match, history, location }) => {
-          const allProps = {...itemProps, ...tabItemProps, match, history, location,}
-          return (<Database {...allProps}/>)
-        }}
-      />
-      <Route
-        path={`/settings`}
-        render={({ match, history, location }) => {
-          const allProps = {...itemProps, match, history, location}
-          return (<Settings {...allProps}/>)
-        }}
-      />
+      <Route path="/database" render={router => <Database {...itemProps} {...tabItemProps} router={router}/>} />
+      <Route path="/settings" render={router => <Settings {...itemProps} router={router}/>} />
     </Switch>
     </>
   )

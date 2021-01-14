@@ -7,6 +7,7 @@ import { NavLink } from 'react-router-dom'
 const Table = (props) => {
   const {tabProps, table, handleTableRowKey} = props
   const {className, header, body, links} = table
+  // console.log(table)
   // console.log(body)
   return (
     <div className="table">
@@ -22,11 +23,13 @@ const Table = (props) => {
         {body.map((row, index)=>{
           const rowClass = index%2 === 0 ? 'table-row odd' : 'table-row'
           const to = !!links ? links[index] : props.router.location.pathname
+          
+          const params = !!table.params ? table.params : {}
           return (
             <React.Fragment key={`table-row ${index}-${Math.round(Math.random()*100000)}`} >
             {!!links 
             ?
-              <NavLink to={to} className={rowClass} onClick={()=>handleTableRowKey(index)}>
+              <NavLink to={to} params={params} className={rowClass} onClick={()=>handleTableRowKey(index)}>
                 {row.map((cell, cellIndex)=>{
                   const double = Array.isArray(cell)
                   return(

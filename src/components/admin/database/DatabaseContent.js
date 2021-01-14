@@ -7,27 +7,8 @@ import { Route, Switch } from 'react-router-dom'
 import Courses from './courses/Courses'
 
 
-// CONTENT
-// Content Tabs
-const contentTabNames = [["students", "generalInformation", "settings"],["currentInformation","generalInformation","History"],["currentInformation","generalInformation","History"]]
-const contentTabLabels = [["학생", "기본 정보", "설정"],["현황","기본 정보", "기록"],["현황","기본 정보", "기록"]]
-const contentTabItems = (siderTabKey) => (
-  contentTabNames[siderTabKey].map((name,index)=>{
-    const label = contentTabLabels[index]
-    return({label, name, key:index})
-  })
-)
-
 const DatabaseContent = (props) => {
-  const {siderTableLastSelectedRow, showContentProps, contentTabKey, handleContentTabKey, isMobile} = props
-  const {siderTabKey} = siderTableLastSelectedRow
-  const contentTabProps = {
-    items: contentTabItems(siderTabKey),
-    itemKey: contentTabKey,
-    setItemKey: handleContentTabKey,
-  }
-  const courseProps = {courseTabProps: contentTabProps, ...props}
-  // console.log(contentPaperTableProps)
+  const {showContentProps, isMobile} = props
   
   const {showContent, toggleShowContent} = showContentProps
   const show = isMobile ? showContent : true
@@ -40,7 +21,7 @@ const DatabaseContent = (props) => {
         </div>
         }
         <Switch>
-          <Route path="/database/courses"><Courses {...courseProps}/></Route>
+          <Route path={`/database/courses/:courseID`} render={router => <Courses {...props} courseRouter={router}/>} />
         </Switch>
         {/* <Banner {...props} {...bannerProps}/>
         <Tabs {...contentTabProps} />

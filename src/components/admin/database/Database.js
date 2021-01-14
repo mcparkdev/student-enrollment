@@ -10,6 +10,9 @@ const addLevels = (nameList) => nameList.map(name=>{
 const courseNames = [].concat(...addLevels(["beginner","intermediate","advanced"]))
 const courseLabels = [].concat(...addLevels(["초급","중급","고급"]))
 
+// THIS IS REPEATED IN DatabaseSider.js
+const siderTabNames = ["courses", "students", "staffs"]
+
 const Database = (props) => {
   // GLOBAL - Show - hide CONTENT for mobile
   const [showContent, setShowContent] = useState(false)
@@ -48,7 +51,7 @@ const Database = (props) => {
   const [siderTabKey, setSiderTabKey] = useState(0)
   const [siderTableTabKey, setSiderTableTabKey] = useState(0)
   const [siderTableRowKey, setSiderTableRowKey] = useState(null)
-  const [siderTableLastSelectedRow, setSiderTableLastSelecetedRow] = useState({siderTabKey: 0, siderTableRowKey:0})
+  const [siderTableLastSelectedRow, setSiderTableLastSelecetedRow] = useState({siderTabKey: 0, siderTableRowKey:0, siderTabName:siderTabNames[0]})
   
   // CONTENT -STATES
   const [bannerTabKey, setBannerTabKey] = useState(0)
@@ -78,7 +81,7 @@ const Database = (props) => {
     if (!!rowKey || rowKey === 0) {
       handleContentTabKey(0)
       setShowContent(true)
-      setSiderTableLastSelecetedRow({siderTabKey, siderTableRowKey:rowKey})
+      setSiderTableLastSelecetedRow({siderTabKey, siderTableRowKey:rowKey, siderTabName: siderTabNames[siderTabKey]})
     }
     setSiderTableRowKey(rowKey)
   }
@@ -99,10 +102,11 @@ const Database = (props) => {
   
   // TOTAL PROPS
   const databaseSiderProps = {...props, courseNames, courseLabels, searchProps, period, schedule, handlePeriod, handleSchedule, periodItems, scheduleItems, handleSiderTableRowKey, handleSiderTableTabKey, handleSiderTabKey, siderTabKey, siderTableTabKey, siderTableRowKey}
-  const databaseContentProps = {...props, courseNames, courseLabels, siderTableLastSelectedRow, showContentProps, handleContentTableRowKey, handleContentTableTabKey, handleContentTabKey, contentTabKey, contentTableTabKey, contentTableRowKey, bannerTabKey, handleBannerTabKey}
+  const databaseContentProps = {...props, siderTabNames, courseNames, courseLabels, siderTableLastSelectedRow, showContentProps, handleContentTableRowKey, handleContentTableTabKey, handleContentTabKey, contentTabKey, contentTableTabKey, contentTableRowKey, bannerTabKey, handleBannerTabKey}
+  const showSider = !(props.isMobile && showContent)
   return (
     <>
-    <DatabaseSider {...databaseSiderProps} />
+    {showSider && <DatabaseSider {...databaseSiderProps} /> }
     <DatabaseContent {...databaseContentProps} />
     </>
   )

@@ -9,7 +9,7 @@ import Button from "@material-ui/core/Button"
 
 const Navbar = (props) => {
   const {items, itemKey, setItemKey, isMobile} = props
-  console.log(isMobile)
+  // console.log(isMobile)
   return (
     <div className="navbar">
       <div className="navbar-start">

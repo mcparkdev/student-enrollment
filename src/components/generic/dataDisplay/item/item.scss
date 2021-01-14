@@ -1,0 +1,24 @@
+@import "../../../../App.scss";
+
+.item-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  .item {
+    margin-bottom: 20px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+    .item-name {
+      font-size: 12px;
+      font-weight: 300;
+      color: $black-02;
+    }
+    .item-label {
+      color: $black-01;
+      font-size: 18px;
+      font-weight: 500;
+    }
+  }
+}

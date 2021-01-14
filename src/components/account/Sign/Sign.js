@@ -3,11 +3,29 @@ import fb, { db } from "../../../firebase"
 const Sign = (props) => {
   console.log(props);
   const {sign, credentials, language} = props;
+  const {email, password} = credentials
+  const persistSession = (email, password) => {
+    fb.auth().setPersistence(fb.auth.Auth.Persistence.SESSION)
+      .then(() => {
+        // Existing and future Auth states are now persisted in the current
+        // session only. Closing the window would clear any existing state even
+        // if a user forgets to sign out.
+        // ...
+        // New sign-in will be persisted with session persistence.
+        return fb.auth().signInWithEmailAndPassword(email, password);
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        alert(errorCode, errorMessage)
+      });
+  }
   const signIn = (credentials) => {
     fb.auth()
-    .signInWithEmailAndPassword(credentials.email, credentials.password)
+    .signInWithEmailAndPassword(email, password)
     .then((u) => {
-      console.log(u);
+      persistSession(email, password)
     })
     .catch((err) => {
       console.log(err);
@@ -39,6 +57,7 @@ const Sign = (props) => {
     fb.auth()
       .createUserWithEmailAndPassword(credentials.email, credentials.password)
       .then((user) => {
+        persistSession(email, password)
         // dispatch({type: USER_SIGNUP_SUCCESS}); // I dispatched some message.
         const data = db.collection('students').doc(user.user.uid).collection('data')
         const {firstName, lastName} = credentials

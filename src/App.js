@@ -55,7 +55,8 @@ export default function App() {
     auth.onAuthStateChanged((user) => {
       setIsSignedIn(!!user);
       console.log("User: ", user);
-      console.log(auth.currentUser)
+      // console.log(auth.currentUser)
+    
       // if(user!==null){
       //   db.collection('students').doc(user.uid).collection('data').doc('personal').get()
       //   .then(doc => {
@@ -80,24 +81,18 @@ export default function App() {
   const lg = 1920
   const isMobile = width < sm
   const viewport= { height, width, xs, sm, md, lg}
+  const appProps = {isMobile, viewport, auth}
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
         <Router>
           {isSignedIn && auth ? (
             <>
-              {auth.currentUser.uid === "Yhn3f8vAjsVqtGCzNEM0zyPOrQq1" ?
+              {auth.currentUser.refreshToken === "AOvuKvQk-PfkF_2ZGjuMBsId19gL5a7bNlUjjhQdw1jKGippNX9W8N83-HXOaLqMhitDaCCj8s0QSvNWZkBrUBfUHl_mg-EfLOQGipMjwkIoft7ct6Z4i2lkTI3dbwsMAus77bI952r8_D-90Kkc2uIRF0895KPs_I0y_wLK2xNiPjbadfKuSVHWTNekf1Bd868dhM_9y9UjVICL2rqrXZwljuJ0AHAff7i2isIs6Q3J-rCa_OX7Qck" ?
                 <>
                   <Redirect to="/database"/>
-                  <Route
-                    path="/"
-                    render={({ match, history, location }) => {
-                      const allProps = {router:{match,history,location}, isMobile, viewport, auth}
-                      return (
-                      <Admin {...allProps}/>
-                    )}}
-                  />
-                  </>
+                  <Route path="/" render={router => <Admin {...appProps} router={router}/> } />
+                </>
                 :
                 <div>
                   학생
