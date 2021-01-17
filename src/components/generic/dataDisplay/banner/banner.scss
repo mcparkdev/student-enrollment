@@ -1,9 +1,210 @@
 @import "../../../../App.scss";
 
 .banner {
-  @extend %flex-center;
   flex-direction: column;
   width: 100%;
   // max-width: 840px;
   margin-bottom: 20px;
+  position: relative;
+  .banner-profile-image {
+    height: 118px;
+    width: 118px;
+    background: $secondary-auxiliary-color;
+    border: 1px solid $secondary-color;
+    margin: 40px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    // display: flex;
+    // flex: 0;
+    img {
+      height: inherit;
+      width: inherit;
+      object-fit: scale-down;
+      object-position: 50% 50%;
+    }
+  }
+  .banner-header {
+    @extend %flex-center;
+    align-items: flex-end;
+    width: 100%;
+    .banner-title {
+      flex: 0 0 auto;
+      font-size: 48px;
+      font-weight: 600;
+      color: $primary-color;
+      border-bottom: 2px solid $secondary-color;
+      padding: 0 20px;
+    }
+    .banner-tabs {
+      flex: 1;
+    }
+    @include media("<=md2") {
+      flex-direction: column;
+      align-items: flex-start;
+      .banner-title {
+        border: 0;
+      }
+      .banner-tabs {
+        width: 100%;
+      }
+    }
+  }
+  .banner-content {
+    width: 100%;
+    color: $primary-auxiliary-color;
+    background: $secondary-auxiliary-color;
+    min-height: 50px;
+    .name {
+      color: $secondary-color;
+    }
+    .main-content,
+    .more-content {
+      padding: 20px;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      @include media(">sm", "<=md") {
+        flex-direction: column;
+        .content-start {
+          align-items: center;
+          margin: 0 0 20px 0;
+          width: 100%;
+          .banner-container {
+            width: min-content;
+          }
+        }
+      }
+      @include media("<=xs") {
+        // flex-flow: row wrap;
+        flex-direction: column;
+        .content-start {
+          align-items: center;
+          margin: 0 0 20px 0;
+          width: 100%;
+          .banner-container {
+            flex-flow: row wrap;
+            justify-content: center;
+            // width: auto;
+            padding: 20px 10px;
+            .banner-item-container {
+              margin-bottom: 10px;
+            }
+          }
+        }
+      }
+    }
+    .main-content {
+      min-height: 50px;
+      // margin-bottom: 10px;
+    }
+    .more-content {
+      border-top: 1px solid $secondary-color;
+      // opacity: 0.5;
+      &.hidden {
+        padding-top: 0;
+        border: 0;
+        .content-start {
+          margin: 0;
+          .show-more-less {
+            margin: 0;
+          }
+        }
+        // padding: 0;
+      }
+      .banner-container {
+        padding: 20px 0;
+        border-bottom: 0.5px solid $secondary-color;
+        @include media(">=md2") {
+          &:nth-last-child(2) {
+            border-bottom: 0;
+          }
+        }
+      }
+    }
+    .content-start {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      flex: 0 auto;
+      margin-right: 20px;
+      .show-more-less {
+        margin-top: 20px;
+      }
+      .banner-container {
+        display: flex;
+        flex-flow: row wrap;
+        align-items: center;
+        justify-content: center;
+        width: min-content;
+        // width: 100%;
+        .banner-item-container {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: center;
+          width: 200px;
+          .banner-item {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: center;
+            margin-right: 16px;
+          }
+          .main {
+            // flex-direction: column-reverse;
+            align-items: center;
+            margin-right: 32px;
+            .label {
+              font-size: 32px;
+              font-weight: 400;
+            }
+          }
+        }
+        .banner-progress {
+          .bar-container {
+            display: flex;
+            flex-flow: row wrap;
+            width: 200px;
+            justify-content: flex-start;
+            align-items: center;
+            .bar {
+              height: 10px;
+              width: 10px;
+              margin: 4px 8px 4px 0;
+              border: 1px solid $secondary-color;
+            }
+            & .checked {
+              background-color: $secondary-color;
+            }
+          }
+        }
+      }
+    }
+    .content-center {
+    }
+    .content-end {
+      .content-chart {
+        width: 100%;
+        height: 100%;
+        border: 1px solid $secondary-color;
+        @extend %flex-center;
+      }
+      flex: 1;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      @include media("<=md2") {
+        width: 100%;
+        .content-chart {
+          margin-bottom: 10px;
+        }
+      }
+    }
+    // height: 200px;
+  }
 }

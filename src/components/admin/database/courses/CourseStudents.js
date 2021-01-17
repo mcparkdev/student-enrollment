@@ -33,7 +33,7 @@ const CourseStudents = (props) => {
   const handleCloseStudentOpenPaymentDialog = () => {
     setStudentOpenPaymentDialog(false)
   }
-  console.log(props)
+  // console.log(props)
   const studentTableRow = (index) => {
     const name = studentNames[index]
     const studentID = studentIDs[index]

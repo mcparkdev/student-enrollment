@@ -5,7 +5,7 @@ import IconButton from '@material-ui/core/IconButton'
 import CloseIcon from '@material-ui/icons/Close';
 import { Route, Switch } from 'react-router-dom'
 import Courses from './courses/Courses'
-
+import Students from './students/Students'
 
 const DatabaseContent = (props) => {
   const {showContentProps, isMobile} = props
@@ -22,6 +22,7 @@ const DatabaseContent = (props) => {
         }
         <Switch>
           <Route path={`/database/courses/:courseID`} render={router => <Courses {...props} courseRouter={router}/>} />
+          <Route path={`/database/students/:studentID`} render={router => <Students {...props} studentRouter={router}/>} />
         </Switch>
         {/* <Banner {...props} {...bannerProps}/>
         <Tabs {...contentTabProps} />

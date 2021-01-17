@@ -1,5 +1,35 @@
 @import "../../../../App.scss";
 
+.banner-item-container {
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  // flex: 1 0 200px;
+  // @include
+  .banner-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    margin-right: 16px;
+    .banner-item-name {
+      color: $secondary-color;
+    }
+    .banner-item-label {
+    }
+    &.main {
+      align-items: center;
+      margin-right: 32px;
+      .banner-item-label {
+        font-size: 32px;
+        font-weight: 400;
+      }
+    }
+  }
+}
+
 .item-container {
   display: flex;
   flex-direction: column;

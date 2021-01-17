@@ -33,6 +33,11 @@
                                   supported by Chrome, Edge, Opera and Firefox */
 }
 
+$navbar-collapsed-width: 73px;
+$sider-width: 481px;
+$navbar-mobile-height: 49px;
+$desktop-content-min-width: 840px;
+
 $breakpoints: (
   phone: 420px,
   tablet: 768px,
@@ -41,6 +46,10 @@ $breakpoints: (
   sm: 960px,
   md: 1280px,
   lg: 1920px,
+  md2: 1394px,
+  // calc(
+  //   #{$navbar-collapsed-width} + #{$sider-width} + #{$desktop-content-min-width}
+  // ),,
 );
 
 $black: black;
@@ -83,7 +92,3 @@ $border-primary: rgba(126, 155, 255, 0.3);
   border: $border-primary;
   @include shadow(0px, 4px, 16px, 0px, 126, 155, 255, 0.3);
 }
-
-$navbar-collapsed-width: 73px;
-$sider-width: 481px;
-$navbar-mobile-height: 49px;

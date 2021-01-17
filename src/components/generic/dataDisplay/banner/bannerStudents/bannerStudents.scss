@@ -1,0 +1,37 @@
+@import "../banner.scss";
+
+.banner-students {
+  .banner-header {
+    margin-left: 200px;
+    width: calc(100% - 200px);
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    .banner-title {
+      border: 0;
+      padding: 0;
+    }
+    // .banner
+  }
+  .main-content {
+    width: calc(100% - 200px - 40px);
+    margin-left: 200px;
+    // @include media(">sm") {
+    //   flex-direction: row;
+    //   flex-flow: row wrap !important;
+    // }
+    .content-start,
+    .content-center,
+    .content-end {
+      .banner-item-container {
+        justify-content: flex-start;
+        align-items: flex-start;
+      }
+      @include media("<=md") {
+        width: 100%;
+      }
+      flex-direction: row;
+      margin: 0 0 20px 0;
+    }
+  }
+}

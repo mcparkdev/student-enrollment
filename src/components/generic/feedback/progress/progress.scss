@@ -1,0 +1,27 @@
+@import "../../../../App.scss";
+
+.banner-progress {
+  .banner-progress-label {
+    font-size: 16px;
+    font-weight: 400;
+  }
+  .bar-container {
+    display: flex;
+    flex-flow: row wrap;
+    width: 200px;
+    justify-content: flex-start;
+    align-items: center;
+    .bar {
+      height: 10px;
+      width: 10px;
+      margin: 4px 8px 4px 0;
+      border: 1px solid $secondary-color;
+    }
+    & .checked {
+      background-color: $secondary-color;
+    }
+  }
+}
+
+.progress {
+}

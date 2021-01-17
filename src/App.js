@@ -79,9 +79,10 @@ export default function App() {
   const sm = 960
   const md = 1280
   const lg = 1920
-  const isMobile = width < sm
+  const isMobile = width <= sm
+  const isSemiMobile = (width <= sm) && (width > xs)
   const viewport= { height, width, xs, sm, md, lg}
-  const appProps = {isMobile, viewport, auth}
+  const appProps = {isMobile, isSemiMobile, viewport, auth}
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
