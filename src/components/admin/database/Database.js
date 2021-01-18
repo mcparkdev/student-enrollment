@@ -107,7 +107,7 @@ const Database = (props) => {
   // TOTAL PROPS
   const databaseSiderProps = {...props, courseNames, courseLabels, searchProps, period, schedule, handlePeriod, handleSchedule, periodItems, scheduleItems, handleSiderTableRowKey, handleSiderTableTabKey, handleSiderTabKey, siderTabKey, siderTableTabKey, siderTableRowKey}
   const databaseContentProps = {...props, siderTabNames, courseNames, courseLabels, siderTableLastSelectedRow, showContentProps, handleContentTableRowKey, handleContentTableTabKey, handleContentTabKey, contentTabKey, contentTableTabKey, contentTableRowKey, bannerTabKey, handleBannerTabKey}
-  const showSider = !(props.isMobile && showContent )
+  const showSider = !(props.viewport.isMobile && showContent )
   return (
     <>
     {showSider && <DatabaseSider {...databaseSiderProps} /> }

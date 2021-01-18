@@ -16,7 +16,7 @@ export const PaperSubTitle = (props) => {
 }
 
 const Paper = (props) => {
-  const {flex, row, col, center, width, background, opacity, marginRight, marginTop, marginLeft, marginBottom} = props;
+  const {flex, row, col, center, width, background, opacity, marginRight, marginTop, marginLeft, marginBottom,padding} = props;
   const style = {
     display: flex ? "flex" : "",
     flexDirection: row ? "row" : (col ? "column" : ""),
@@ -29,6 +29,7 @@ const Paper = (props) => {
     marginRight: marginRight ? marginRight : "",
     marginBottom: marginBottom ? marginBottom : "",
     marginLeft: marginLeft ? marginLeft : "",
+    padding: padding ? padding : "",
   }
   // console.log(style)
   return (

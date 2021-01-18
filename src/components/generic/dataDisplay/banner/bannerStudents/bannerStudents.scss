@@ -1,37 +1,335 @@
 @import "../banner.scss";
 
+@include media(">md") {
+}
+@include media(">xs", "<=sm") {
+}
+@include media("<=xs") {
+}
+@include media(">sm", "<=md") {
+}
+
 .banner-students {
-  .banner-header {
-    margin-left: 200px;
-    width: calc(100% - 200px);
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    .banner-title {
-      border: 0;
-      padding: 0;
-    }
-    // .banner
+  display: flex;
+  width: 100%;
+  @include media(">md") {
+    flex-direction: row !important;
   }
-  .main-content {
-    width: calc(100% - 200px - 40px);
-    margin-left: 200px;
-    // @include media(">sm") {
-    //   flex-direction: row;
-    //   flex-flow: row wrap !important;
-    // }
-    .content-start,
-    .content-center,
-    .content-end {
+  @include media(">xs", "<=sm") {
+    flex-direction: row !important;
+  }
+  @include media("<=xs") {
+    flex-direction: column !important;
+  }
+  @include media(">sm", "<=md") {
+    flex-direction: column !important;
+  }
+  .banner-sider {
+    position: relative;
+    padding: 20px;
+    background: $secondary-auxiliary-color;
+    display: flex;
+    justify-content: center;
+    z-index: 20;
+    &::after {
+      content: " ";
+      position: absolute;
+      display: block;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 19;
+      background: $secondary-auxiliary-color;
+      transform-origin: bottom left;
+    }
+    @include media(">md") {
+      flex: 0 0 120px;
+      flex-direction: column;
+      &::after {
+        -ms-transform: skew(-8deg, 0deg);
+        -webkit-transform: skew(-8deg, 0deg);
+        transform: skew(-8deg, 0deg);
+      }
+    }
+    @include media(">xs", "<=sm") {
+      flex: 0 0 120px;
+      flex-direction: column;
+      &::after {
+        -ms-transform: skew(-8deg, 0deg);
+        -webkit-transform: skew(-8deg, 0deg);
+        transform: skew(-8deg, 0deg);
+      }
+    }
+    @include media("<=xs") {
+      flex-direction: row;
+      justify-content: space-between;
+      &::after {
+        -ms-transform: skew(0deg, 3deg);
+        -webkit-transform: skew(0deg, 3deg);
+        transform: skew(0deg, 3deg);
+      }
+    }
+    @include media(">sm", "<=md") {
+      flex-direction: row;
+      justify-content: space-between;
+      &::after {
+        transform-origin: bottom left;
+        -ms-transform: skew(0deg, 3deg);
+        -webkit-transform: skew(0deg, 3deg);
+        transform: skew(0deg, 3deg);
+      }
+    }
+    .banner-sider-profile {
+      position: relative;
+      z-index: 20;
       .banner-item-container {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        @include media(">md") {
+          flex-direction: column;
+        }
+        @include media(">xs", "<=sm") {
+          flex-direction: column;
+        }
+        @include media("<=xs") {
+          flex-flow: row wrap;
+          margin-bottom: 0;
+        }
+        @include media(">sm", "<=md") {
+          flex-flow: row wrap;
+          margin-bottom: 0;
+        }
+        .banner-item {
+          display: flex;
+          justify-content: flex-start;
+          align-items: flex-start;
+          margin-bottom: 20px;
+          @include media(">md") {
+          }
+          @include media(">xs", "<=sm") {
+          }
+          @include media("<=xs") {
+            margin-bottom: 0;
+          }
+          @include media(">sm", "<=md") {
+            margin-bottom: 0;
+          }
+          .banner-item-name {
+            font-size: 16px;
+            margin-bottom: 4px;
+            width: max-content;
+          }
+          .banner-item-label {
+            color: $white;
+            font-size: 18px;
+            font-weight: 400;
+            width: max-content;
+          }
+        }
+      }
+    }
+    .banner-sider-actions {
+      position: relative;
+      z-index: 20;
+    }
+  }
+  .banner-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    z-index: 10;
+    @include media(">md") {
+    }
+    @include media(">xs", "<=sm") {
+    }
+    @include media("<=xs") {
+    }
+    @include media(">sm", "<=md") {
+    }
+    .banner-header {
+      // padding-left: 50px;
+      width: 100%;
+      display: flex;
+      padding-top: 20px;
+      @include media(">md") {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-end;
+      }
+      @include media(">xs", "<=sm") {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-end;
+      }
+      @include media("<=xs") {
+        flex-direction: column;
         justify-content: flex-start;
         align-items: flex-start;
       }
-      @include media("<=md") {
-        width: 100%;
+      @include media(">sm", "<=md") {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
       }
-      flex-direction: row;
-      margin: 0 0 20px 0;
+      .banner-content-title {
+        @include media(">md") {
+          padding: 20px 20px 20px 50px;
+          font-size: 24px;
+          font-weight: 600;
+          color: $primary-color;
+          border-bottom: 1px solid $primary-color;
+          flex: 0 1 calc(100% - 70px - 200px);
+        }
+        @include media(">xs", "<=sm") {
+          padding: 20px 20px 20px 50px;
+          font-size: 24px;
+          font-weight: 600;
+          color: $primary-color;
+          border-bottom: 1px solid $primary-color;
+          flex: 0 1 calc(100% - 70px - 200px);
+        }
+        @include media("<=xs") {
+          padding: 20px;
+          font-size: 20px;
+          font-weight: 500;
+          color: $primary-color;
+        }
+        @include media(">sm", "<=md") {
+          padding: 20px;
+          font-size: 20px;
+          font-weight: 500;
+          color: $primary-color;
+        }
+      }
+      .banner-tabs {
+        display: flex;
+        flex: 1;
+        @include media("<=xs") {
+          width: calc(100%);
+          &::before {
+            content: " ";
+            width: 20px;
+            border-bottom: 1px solid $selected-color;
+          }
+        }
+        @include media(">sm", "<=md") {
+          width: calc(100%);
+          &::before {
+            content: " ";
+            width: 20px;
+            border-bottom: 1px solid $selected-color;
+          }
+        }
+      }
+    }
+    .banner-content-body {
+      padding: 20px;
+      background-color: $primary-auxiliary-color;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      @include media(">md") {
+        width: calc(100% - 70px);
+        flex: 1;
+        padding-left: 50px;
+        flex-direction: row;
+      }
+      @include media(">xs", "<=sm") {
+        width: calc(100% - 70px);
+        flex: 1;
+        padding-left: 50px;
+        flex-direction: row;
+      }
+      @include media("<=xs") {
+        width: calc(100% - 40px);
+        flex-direction: column;
+      }
+      @include media(">sm", "<=md") {
+        width: calc(100% - 40px);
+        flex-direction: column;
+      }
+      .banner-content-body-main {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        @include media(">md") {
+          border-right: 1px solid $border-primary;
+          padding-right: 20px;
+        }
+        @include media(">xs", "<=sm") {
+          border-right: 1px solid $border-primary;
+          padding-right: 20px;
+        }
+        @include media("<=xs") {
+        }
+        @include media(">sm", "<=md") {
+        }
+        .banner-content-body-main-course-name {
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+          margin-bottom: 10px;
+          font-size: 20px;
+          font-weight: 600;
+          color: $primary-color;
+          .avatar {
+            margin-right: 10px;
+            font-size: 16px;
+            font-weight: 400;
+            color: $primary-auxiliary-color;
+          }
+        }
+        .banner-content-body-main-course-details {
+          .banner-item {
+            margin-right: 20px;
+            .banner-item-name {
+              color: $grey-01;
+              font-size: 12px;
+            }
+            .banner-item-label {
+              color: $primary-color;
+              font-size: 20px;
+            }
+          }
+        }
+      }
+      .banner-content-body-actions {
+        // padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        & .MuiButtonBase-root {
+          margin: 5px 0;
+          &:nth-child(2) {
+            background: $secondary-color;
+            color: $secondary-auxiliary-color;
+            // color: $secondary-auxiliary-color;
+            box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
+              0px 2px 2px 0px rgba(0, 0, 0, 0.14),
+              0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+          }
+        }
+        @include media(">md") {
+          margin-left: 40px;
+        }
+        @include media(">xs", "<=sm") {
+          margin-left: 40px;
+        }
+        @include media("<=xs") {
+          margin-top: 10px;
+          width: 100%;
+        }
+        @include media(">sm", "<=md") {
+          margin-top: 10px;
+          width: 100%;
+        }
+      }
     }
   }
 }

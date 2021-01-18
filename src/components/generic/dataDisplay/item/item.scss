@@ -16,8 +16,10 @@
     margin-right: 16px;
     .banner-item-name {
       color: $secondary-color;
+      width: max-content;
     }
     .banner-item-label {
+      width: max-content;
     }
     &.main {
       align-items: center;

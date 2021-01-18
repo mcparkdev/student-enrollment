@@ -8,8 +8,10 @@
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
+  overflow-x: auto;
   .tab {
     opacity: 0.5;
+    width: max-content;
     &.selected {
       opacity: 1;
     }
@@ -58,6 +60,31 @@
       &.ghost {
         padding: 0 !important;
         border: 1px solid $secondary-color;
+      }
+    }
+  }
+  &.contained-secondary {
+    align-items: flex-end;
+    width: 100%;
+    .tab {
+      opacity: 0.8;
+      border-radius: 8px;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      border-bottom: 1px solid $selected-color;
+      padding: 8px 24px;
+      span {
+        color: $primary-color;
+      }
+      &.selected {
+        background-color: $primary-auxiliary-color;
+        border: 1px solid $selected-color;
+        border-bottom: 1px solid $primary-auxiliary-color;
+        opacity: 1;
+      }
+      &.ghost {
+        padding: 0 !important;
+        border-bottom: 1px solid $selected-color;
       }
     }
   }

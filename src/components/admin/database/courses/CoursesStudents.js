@@ -27,7 +27,7 @@ const studentSchedules = [1, 1, 2, 1, 2, 2, 1, 1, 2]
 const studentPayments = ["상세정보 보기", "상세정보 보기", "상세정보 보기", "상세정보 보기", "상세정보 보기", "상세정보 보기", "상세정보 보기", "상세정보 보기", "상세정보 보기"]
 
 
-const CourseStudents = (props) => {
+const CoursesStudents = (props) => {
   const {contentTableRowKey, handleContentTableRowKey, contentTableTabKey, handleContentTableTabKey} = props
   const [studentOpenPaymentDialog, setStudentOpenPaymentDialog] = useState(false)
   const handleCloseStudentOpenPaymentDialog = () => {
@@ -109,4 +109,4 @@ const CourseStudents = (props) => {
   )
 }
 
-export default CourseStudents
+export default CoursesStudents

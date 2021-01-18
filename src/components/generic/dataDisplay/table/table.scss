@@ -95,20 +95,17 @@
     }
   }
   .table-body {
-    // width: calc(100% + 40px);
-    // position: relative;
-    // left: -20px;
     font-size: 16px;
     max-height: 400px;
-    @supports (-webkit-touch-callout: none) {
-      max-height: none;
-    }
-    // -webkit-overflow-scrolling: touch;
-    overflow: overlay;
+    // @supports (-webkit-touch-callout: none) {
+    //   max-height: none;
+    // }
+    -webkit-overflow-scrolling: touch;
+    overflow-y: overlay;
     .table-row {
       // width: calc(100% - 20px);
       // padding: 8px 10px;
-      height: 48px;
+      min-height: 48px;
       &:hover {
         background-color: $selected-color;
         // cursor: pointer;

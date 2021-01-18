@@ -2,9 +2,9 @@ import React from 'react'
 import { Redirect, Route, Switch } from 'react-router-dom'
 import BannerCourses from "../../../generic/dataDisplay/banner/bannerCourses/BannerCourses"
 import Tabs from "../../../generic/navigation/tabs/Tabs"
-import CourseStudents from './CourseStudents'
-import CourseInformation from './CourseInformation'
-import CourseSettings from './CourseSettings'
+import CoursesStudents from './CoursesStudents'
+import CoursesInformation from './CoursesInformation'
+import CoursesSettings from './CoursesSettings'
 
 // Content Banner Props
 const bannerTabNames = ["2021-1","2020-4", "more"]
@@ -15,10 +15,11 @@ const bannerTabItems = bannerTabNames.map((name,index)=>{
   })
 
   // Content Banner Course Data
-const bannerCourseNames = ["담임","학생","납부현황"]
+const bannerCoursesNames = ["담임","학생","납부현황"]
 
-const courseTabNames = ["students", "generalInformation", "settings"]
-const courseTabLabels = ["학생", "기본 정보", "설정"]
+// Course tabs
+const coursesTabNames = ["students", "generalInformation", "settings"]
+const coursesTabLabels = ["학생", "기본 정보", "설정"]
 // const toItemProps = (names, labels) => {
 //   return names.map((name, index)=>{
 //     const label = labels[index]
@@ -26,7 +27,7 @@ const courseTabLabels = ["학생", "기본 정보", "설정"]
 //   })
 // }
 const bannerMoreContentStart = () => {
-  const namesList = [bannerCourseNames, bannerCourseNames, bannerCourseNames, bannerCourseNames]
+  const namesList = [bannerCoursesNames, bannerCoursesNames, bannerCoursesNames, bannerCoursesNames]
   const labelsList = [["박민창","9명","56%"], ["박민창","10명","90%"],["이재석","9명","78%"],["이재석","10명","80%"], ]
   const progressList = [[1,1,1,1,1,0,0,0,0], [1,1,1,1,1,1,1,1,1,0], [1,1,1,1,1,1,1,0,0], [1,1,1,1,1,1,1,1,0,0]]
   return namesList.map((names,index) => {
@@ -47,9 +48,9 @@ const bannerMoreContentStart = () => {
 
 const Courses = (props) => {
   const {bannerTabKey, handleBannerTabKey, courseLabels, contentTabKey, handleContentTabKey} = props
-  const currentCourseID = props.courseRouter.match.params.courseID
+  const currentCourseID = props.coursesRouter.match.params.courseID
   const currentCourseName = courseLabels[currentCourseID]
-  const bannerCourseData = {
+  const bannerCoursesData = {
     title: currentCourseName,
     main:{
       start:{
@@ -76,13 +77,13 @@ const Courses = (props) => {
     ghost: true,
     variant: "contained",
   }
-  const bannerProps = {tabProps: bannerTabProps, ...bannerCourseData}
-  const courseTabItems = courseTabNames.map((name,index)=>{
-    const label = courseTabLabels[index]
+  const bannerProps = {tabProps: bannerTabProps, ...bannerCoursesData}
+  const coursesTabItems = coursesTabNames.map((name,index)=>{
+    const label = coursesTabLabels[index]
     return({label, name, link: `/database/courses/${currentCourseID}/${name}` , key:index})
   })
-  const courseTabProps = {
-    items: courseTabItems,
+  const coursesTabProps = {
+    items: coursesTabItems,
     itemKey: contentTabKey,
     setItemKey: handleContentTabKey,
     link:true,
@@ -91,12 +92,12 @@ const Courses = (props) => {
   return (
     <>
       <BannerCourses {...props} {...bannerProps}/>
-      <Tabs {...courseTabProps} />
+      <Tabs {...coursesTabProps} />
       <Switch>
-        <Route path={`/database/courses/:courseID/${courseTabNames[0]}`} render={router => <CourseStudents {...props} router={router}/>} />
-        <Route path={`/database/courses/:courseID/${courseTabNames[1]}`} render={router => <CourseInformation {...props} router={router}/>} />
-        <Route path={`/database/courses/:courseID/${courseTabNames[2]}`} render={router => <CourseSettings {...props} router={router}/>} />
-        <Redirect to={`/database/courses/:courseID/${courseTabNames[0]}`}/>
+        <Route path={`/database/courses/:courseID/${coursesTabNames[0]}`} render={router => <CoursesStudents {...props} router={router}/>} />
+        <Route path={`/database/courses/:courseID/${coursesTabNames[1]}`} render={router => <CoursesInformation {...props} router={router}/>} />
+        <Route path={`/database/courses/:courseID/${coursesTabNames[2]}`} render={router => <CoursesSettings {...props} router={router}/>} />
+        <Redirect to={`/database/courses/:courseID/${coursesTabNames[0]}`}/>
       </Switch>
     </>
   )

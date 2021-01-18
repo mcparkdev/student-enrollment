@@ -8,7 +8,8 @@ import { NavLink } from 'react-router-dom'
 import Button from "@material-ui/core/Button"
 
 const Navbar = (props) => {
-  const {items, itemKey, setItemKey, isMobile} = props
+  const {items, itemKey, setItemKey, viewport} = props
+  const {isMobile} = viewport
   // console.log(isMobile)
   return (
     <div className="navbar">

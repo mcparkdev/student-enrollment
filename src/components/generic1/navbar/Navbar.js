@@ -14,17 +14,12 @@ export default function Navbar(props) {
           <NavLink to="/home">
             <img src={logo} alt="" />
             <div>
-            {/* {isMobile ? "CCC" : "Colegio Colombo Coreano"} */}
             재콜롬비아한국학교
             </div>
           </NavLink>
         </li>
       </ul>
-      {/* <ul className="navbar-center" style={props.nonMobile}>
-      </ul> */}
       <ul className="navbar-right">
-        {/* <li className="navbar-item" ><SearchIcon/></li>
-        <li className="navbar-item" ><MenuIcon/></li> */}
         <li className="navbar-item" >
           <ProfileMenu {...props} />
         </li>

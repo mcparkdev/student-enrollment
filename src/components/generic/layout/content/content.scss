@@ -28,9 +28,13 @@
     width: 100%;
     max-width: 840px;
   }
-  .content-close {
-    position: absolute;
-    right: 20px;
-    top: 20px;
+  .content-actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    // position: absolute;
+    // right: 20px;
+    // top: 20px;
   }
 }
