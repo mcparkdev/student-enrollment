@@ -9,7 +9,7 @@ export const BannerItemContainer = (props) => {
       {items.map((item, index)=>{
         const {name, label, main} = item
         return(
-        <div className={`banner-item ${!!main ? "main" : ""}`} key={`banner-item main ${name}-${index}`}>
+        <div className={`banner-item${!!main ? " main" : ""}`} key={`banner-item main ${name}-${index}`}>
           <div className="banner-item-name">{name}</div>
           <div className="banner-item-label">{label}</div>
         </div>

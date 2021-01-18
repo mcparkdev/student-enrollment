@@ -2,9 +2,9 @@
 
 @include media(">md") {
 }
-@include media(">xs", "<=sm") {
+@include media(">tablet", "<=sm") {
 }
-@include media("<=xs") {
+@include media("<=tablet") {
 }
 @include media(">sm", "<=md") {
 }
@@ -15,10 +15,10 @@
   @include media(">md") {
     flex-direction: row !important;
   }
-  @include media(">xs", "<=sm") {
+  @include media(">tablet", "<=sm") {
     flex-direction: row !important;
   }
-  @include media("<=xs") {
+  @include media("<=tablet") {
     flex-direction: column !important;
   }
   @include media(">sm", "<=md") {
@@ -52,7 +52,7 @@
         transform: skew(-8deg, 0deg);
       }
     }
-    @include media(">xs", "<=sm") {
+    @include media(">tablet", "<=sm") {
       flex: 0 0 120px;
       flex-direction: column;
       &::after {
@@ -61,7 +61,7 @@
         transform: skew(-8deg, 0deg);
       }
     }
-    @include media("<=xs") {
+    @include media("<=tablet") {
       flex-direction: row;
       justify-content: space-between;
       &::after {
@@ -90,10 +90,10 @@
         @include media(">md") {
           flex-direction: column;
         }
-        @include media(">xs", "<=sm") {
+        @include media(">tablet", "<=sm") {
           flex-direction: column;
         }
-        @include media("<=xs") {
+        @include media("<=tablet") {
           flex-flow: row wrap;
           margin-bottom: 0;
         }
@@ -108,9 +108,9 @@
           margin-bottom: 20px;
           @include media(">md") {
           }
-          @include media(">xs", "<=sm") {
+          @include media(">tablet", "<=sm") {
           }
-          @include media("<=xs") {
+          @include media("<=tablet") {
             margin-bottom: 0;
           }
           @include media(">sm", "<=md") {
@@ -143,9 +143,9 @@
     z-index: 10;
     @include media(">md") {
     }
-    @include media(">xs", "<=sm") {
+    @include media(">tablet", "<=sm") {
     }
-    @include media("<=xs") {
+    @include media("<=tablet") {
     }
     @include media(">sm", "<=md") {
     }
@@ -159,12 +159,12 @@
         justify-content: space-between;
         align-items: flex-end;
       }
-      @include media(">xs", "<=sm") {
+      @include media(">tablet", "<=sm") {
         flex-direction: row;
         justify-content: space-between;
         align-items: flex-end;
       }
-      @include media("<=xs") {
+      @include media("<=tablet") {
         flex-direction: column;
         justify-content: flex-start;
         align-items: flex-start;
@@ -180,10 +180,10 @@
           font-size: 24px;
           font-weight: 600;
           color: $primary-color;
-          border-bottom: 1px solid $primary-color;
+          border-bottom: 1px solid $selected-color;
           flex: 0 1 calc(100% - 70px - 200px);
         }
-        @include media(">xs", "<=sm") {
+        @include media(">tablet", "<=sm") {
           padding: 20px 20px 20px 50px;
           font-size: 24px;
           font-weight: 600;
@@ -191,7 +191,7 @@
           border-bottom: 1px solid $primary-color;
           flex: 0 1 calc(100% - 70px - 200px);
         }
-        @include media("<=xs") {
+        @include media("<=tablet") {
           padding: 20px;
           font-size: 20px;
           font-weight: 500;
@@ -207,7 +207,7 @@
       .banner-tabs {
         display: flex;
         flex: 1;
-        @include media("<=xs") {
+        @include media("<=tablet") {
           width: calc(100%);
           &::before {
             content: " ";
@@ -235,15 +235,15 @@
         width: calc(100% - 70px);
         flex: 1;
         padding-left: 50px;
-        flex-direction: row;
+        flex-flow: row wrap;
       }
-      @include media(">xs", "<=sm") {
+      @include media(">tablet", "<=sm") {
         width: calc(100% - 70px);
         flex: 1;
         padding-left: 50px;
-        flex-direction: row;
+        flex-flow: row wrap;
       }
-      @include media("<=xs") {
+      @include media("<=tablet") {
         width: calc(100% - 40px);
         flex-direction: column;
       }
@@ -260,11 +260,11 @@
           border-right: 1px solid $border-primary;
           padding-right: 20px;
         }
-        @include media(">xs", "<=sm") {
+        @include media(">tablet", "<=sm") {
           border-right: 1px solid $border-primary;
           padding-right: 20px;
         }
-        @include media("<=xs") {
+        @include media("<=tablet") {
         }
         @include media(">sm", "<=md") {
         }
@@ -287,6 +287,7 @@
         .banner-content-body-main-course-details {
           .banner-item {
             margin-right: 20px;
+            align-items: flex-start;
             .banner-item-name {
               color: $grey-01;
               font-size: 12px;
@@ -306,6 +307,8 @@
         align-items: center;
         & .MuiButtonBase-root {
           margin: 5px 0;
+          font-weight: 600;
+          min-width: fit-content;
           &:nth-child(2) {
             background: $secondary-color;
             color: $secondary-auxiliary-color;
@@ -314,14 +317,27 @@
               0px 2px 2px 0px rgba(0, 0, 0, 0.14),
               0px 1px 5px 0px rgba(0, 0, 0, 0.12);
           }
+          // & .MuiButton-label {
+          //   display: -webkit-box;
+          //   height: 16px;
+          //   -webkit-box-orient: vertical;
+          //   overflow: hidden;
+          //   text-overflow: ellipsis;
+          //   white-space: normal;
+          //   -webkit-line-clamp: 1;
+          //   font-size: 16px;
+          //   font-weight: 700;
+          //   line-height: 16px;
+          //   letter-spacing: normal;
+          // }
         }
         @include media(">md") {
           margin-left: 40px;
         }
-        @include media(">xs", "<=sm") {
+        @include media(">tablet", "<=sm") {
           margin-left: 40px;
         }
-        @include media("<=xs") {
+        @include media("<=tablet") {
           margin-top: 10px;
           width: 100%;
         }
