@@ -16,16 +16,18 @@ const DatabaseContent = (props) => {
   return (
     <Content className="database" show={show}>
       <div className="content-content" styles={{display: (isMobile && !showContent) ? "none" : "flex"}}>
-        {isMobile &&
+        {showContent &&
+        <>
         <div className="content-actions">
           <IconButton aria-label="back" onClick={()=>props.router.history.goBack()}><ArrowBackIcon fontSize="large"/></IconButton>
           <IconButton aria-label="close" onClick={toggleShowContent} ><CloseIcon fontSize="large" /></IconButton>
         </div>
-        }
         <Switch>
           <Route path={`/database/courses/:courseID`} render={router => <Courses {...props} coursesRouter={router}/>} />
           <Route path={`/database/students/:studentID`} render={router => <Students {...props} studentsRouter={router}/>} />
         </Switch>
+        </>
+        }
         {/* <Banner {...props} {...bannerProps}/>
         <Tabs {...contentTabProps} />
         <PaperTable {...contentPaperTableProps} /> */}

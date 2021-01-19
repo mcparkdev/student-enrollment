@@ -1,11 +1,11 @@
 import fb, { db } from "../../../firebase"
+import firebase from "firebase/app";
 
 const Sign = (props) => {
-  console.log(props);
   const {sign, credentials, language} = props;
   const {email, password} = credentials
   const persistSession = (email, password) => {
-    fb.auth().setPersistence(fb.auth.Auth.Persistence.SESSION)
+    fb.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
       .then(() => {
         // Existing and future Auth states are now persisted in the current
         // session only. Closing the window would clear any existing state even
@@ -59,58 +59,73 @@ const Sign = (props) => {
       .then((user) => {
         persistSession(email, password)
         // dispatch({type: USER_SIGNUP_SUCCESS}); // I dispatched some message.
-        const data = db.collection('students').doc(user.user.uid).collection('data')
+        
+        // const timestamp: FieldValue.serverTimestamp()
+        const batch = db.batch()
+        const studentDoc = db.doc(`/students/${user.user.uid}`)
         const {firstName, lastName} = credentials
-        data.doc("personal").set({
-          firstName,
-          lastName,
-          birthDate: new Date ("2000-01-01"),
-          gender: "",
-          nationality: "Colombia",
-          documentType: "" ,         
-          documentNumber: "",
-          documentDepartment: "Cundinamarca",
-          documentCity: "Bogotá D.C.",
-          email: credentials.email,
-          createdAt: new Date(),
-        }).then(()=>alert("Personal data updated"))
-          .catch(err => {console.log(err);alert("Personal data could no be updated");})
-        data.doc("responsible").set({
-          gFirstName: "",
-          gLastName: "",
-          gRelationship: "mother",
-          gMobile: "",
-          gAddress: "",
-          gEmail: "",
-          createdAt: new Date(),
-        }).then(()=>alert("Responsible data updated"))
-          .catch(err => {console.log(err);alert("Responsible data could no be updated");})
-        data.doc("residential").set({
-          department: "Cundinamarca",
-          city: "Bogotá D.C.",
-          address: "",
-          mobile: "",
-          telephone: "",
-          createdAt: new Date(),
-        }).then(()=>alert("Residential data updated"))
-          .catch(err => {console.log(err);alert("Residential data could no be updated");})
-          data.doc("payment").set({
-            bankingEntity: "",
-            paymentType: "",
-            payerName: "",
-            createdAt: new Date(),
-          }).then(()=>alert("Payment data updated"))
-          .catch(err => {console.log(err);alert("Payment data could no be updated");})
-        db.collection('students').doc(user.user.uid).set({
-          personal: false, responsible: false, residential: false, payment: false
+        batch.set(studentDoc, {
+          data:{
+            personal:{
+              firstName,
+              lastName,
+              birthDate: new Date ("2000-01-01"),
+              gender: "",
+              nationality: "Colombia",
+              email: credentials.email,
+              updated: false,
+              createdAt: new Date(),
+            },
+            document:{
+              type: "" ,         
+              number: "",
+              department: "Cundinamarca",
+              city: "Bogotá D.C.",
+              updated: false,
+              createdAt: new Date(),
+            },
+            residential:{
+              department: "Cundinamarca",
+              city: "Bogotá D.C.",
+              address: "",
+              mobile: "",
+              telephone: "",
+              updated: false,
+              createdAt: new Date(),
+            },
+            responsible:{
+              gFirstName: "",
+              gLastName: "",
+              gRelationship: "mother",
+              gMobile: "",
+              gAddress: "",
+              gEmail: "",
+              updated: false,
+              createdAt: new Date(),
+            },
+            adeveco:{
+              certificateRef: ""
+            },
+            payment:{
+              "Configuración 1":{
+                bank: "",
+                type: "",
+                payer: "",
+                studentBillRef: "",
+                adminBillRef: "",
+              }
+            }
+          },
+          paymentHistory:{},
+          courseHistory: {},
         })
-          .then(()=>alert("Data validation updated"))
-          .catch(err => {console.log(err);alert("Data validation error");})
+
         const documentID = new Date().getTime().toString()
-        const historiesData = { createdAt: new Date(), record:{collection:"students", document:user.user.uid, action:"registered", user:{ firstName, lastName, id:user.user.uid} }}
-        db.doc(`/histories/${documentID}`).set(historiesData)
-          .then(()=>alert("History updated"))
-          .catch(err => {console.log(err);alert("History could no be updated");})
+        const historiesData = { createdAt: new Date(), collection:"students", document:user.user.uid, action:"register", before:{}, after:{ firstName, lastName, id:user.user.uid} }
+        batch.set(db.doc(`/histories/${documentID}`),historiesData)
+        batch.commit()
+        .then(u=>console.log(u))
+        .catch(err=>console.log(err))
       })
       .catch((err) => {
         console.log(err);

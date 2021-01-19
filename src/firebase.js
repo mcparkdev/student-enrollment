@@ -16,9 +16,10 @@ var firebaseConfig = {
 // Initialize Firebase
 const fb = firebase.initializeApp(firebaseConfig);
 export default fb;
-firebase.auth().useDeviceLanguage();
+// firebase.auth().useDeviceLanguage();
 
 export const auth = firebase.auth();
+auth.useDeviceLanguage();
 // firebase.analytics();
 export const db = fb.firestore();
 export const storage = firebase.storage();

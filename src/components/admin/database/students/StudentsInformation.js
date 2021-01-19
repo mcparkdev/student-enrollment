@@ -108,16 +108,6 @@ const StudentsInformation = (props) => {
         </Paper>    
       )
     })}
-    {/* <Paper opacity={0.95} marginBottom={20}>
-      <PaperTitle>개인 정보</PaperTitle>
-      <PaperSubTitle>학생의 개인 정보를 확인 할 수 있습니다..</PaperSubTitle>
-      <ItemContainer {...studentsGeneralInformationItemProps[0]}/>
-    </Paper>
-    <Paper opacity={0.95}>
-      <PaperTitle>주거 정보</PaperTitle>
-      <PaperSubTitle>2부 수업 기본정를 확인 및 수정 할 수 있습니다.</PaperSubTitle>
-      <ItemContainer {...studentsGeneralInformationItemProps[1]}/>
-    </Paper> */}
     </>
   )
 }

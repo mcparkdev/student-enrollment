@@ -6,6 +6,10 @@ import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
 import Tabs from '../../../generic/navigation/tabs/Tabs';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import StudentsInformation from "./StudentsInformation"
+import StudentsGuardian from './StudentsGuardian';
+import StudentsAdeveco from './StudentsAdeveco';
+import StudentsPaymentHistory from './StudentsPaymentHistory';
+import StudentsCoursesHistory from './StudentsCoursesHistory';
 
 const bannerTabNames = ["2021-1", "more"]
 const bannerTabLabels = ["2021-1","더 보기"]
@@ -15,9 +19,8 @@ const bannerTabItems = bannerTabNames.map((name,index)=>{
   })
 
 // Student tabs
-const studentsTabNames = ["generalInformation", "responsibleInformation", "bankInformation", "adevecoInformation","history"]
-const studentsTabLabels = ["기본 정보", "보호자", "송금 정보", "참전용사 후손", "기록"]
-
+const studentsTabNames = ["generalInformation", "responsibleInformation", "adevecoInformation", "paymentHistory", "coursesHistory"]
+const studentsTabLabels = ["기본 정보", "보호자", "참전용사 후손", "송금 기록", "수업 기록"]
 
 const Students = (props) => {
   const {bannerTabKey, handleBannerTabKey, contentTabKey, handleContentTabKey} = props
@@ -82,6 +85,10 @@ const Students = (props) => {
       <Tabs {...studentsTabProps} />
       <Switch>
         <Route path={`/database/students/:studentID/${studentsTabNames[0]}`} render={router => <StudentsInformation {...props} router={router}/>} />
+        <Route path={`/database/students/:studentID/${studentsTabNames[1]}`} render={router => <StudentsGuardian {...props} router={router}/>} />
+        <Route path={`/database/students/:studentID/${studentsTabNames[2]}`} render={router => <StudentsAdeveco {...props} router={router}/>} />
+        <Route path={`/database/students/:studentID/${studentsTabNames[3]}`} render={router => <StudentsPaymentHistory {...props} router={router}/>} />
+        <Route path={`/database/students/:studentID/${studentsTabNames[4]}`} render={router => <StudentsCoursesHistory {...props} router={router}/>} />
         <Redirect to={`/database/students/:studentID/${studentsTabNames[0]}`}/>
       </Switch>
     </>

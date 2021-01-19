@@ -46,9 +46,9 @@ const addLevels = (nameList) => (
 )
 const courseNames = addLevels(["beginner","intermediate","advanced"])
 const courseLabels = addLevels(["초급","중급","고급"])
+// Temporary student data. Got to change to firebase stored data
 const courseStatus = addTotalList([["new", "new", "", "", "", "new", ], ["new", "new", "new", "new", "", "",], ["new", "new", "", "", "", "new", ]])
 const courseIDs = addTotalList([[0,1,2,3,4,5],[6,7,8,9,10,11],[12,13,14,15,16,17]])
-// Temporary student names. Got to change to firebase stored data
 const studentNames = ["Valentina Sofia Casadiego Reyes", "Min Chang Park", "Min Chang Park", "Min Seo Park", "Min Seo Park", "Min Seo Park","Min Gyu Park", "Min Gyu Park", "Min Gyu Park"]
 const studentIDs = ["201631807", "201631807", "201631807", "202149352", "202149352", "202149352", "201439402", "201439402", "201439402"]
 const studentCourses = [0, 0, 1, 1, 2, 2, 0, 1, 2]

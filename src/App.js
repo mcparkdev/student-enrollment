@@ -49,6 +49,7 @@ const theme = createMuiTheme({
 });
 
 export default function App() {
+  // console.log(fb.auth.Auth.Persistence)
   const [isSignedIn, setIsSignedIn] = useState(false);
   // const [userName, setUserName] = useState({firstName:"",lastName:""})
   useEffect(() => {
